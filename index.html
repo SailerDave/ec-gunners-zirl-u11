@@ -47,6 +47,13 @@ details[open] summary{background:#ffd21a;color:#000}
 @media(max-width:650px){.navbtn{flex:1}.roster{grid-template-columns:1fr}.player img{width:76px;height:76px}.underbadge{float:none;display:block;width:max-content;margin-top:5px}}
 
 .cancelledGame{position:relative;overflow:hidden}.cancelledGame::after{content:"ABGESAGT";position:absolute;left:-12%;right:-12%;top:43%;transform:rotate(-9deg);background:#c40000;color:white;text-align:center;font-size:19px;font-weight:900;letter-spacing:2px;padding:8px 0;border-top:2px solid #fff;border-bottom:2px solid #fff;box-shadow:0 2px 8px #0009;pointer-events:none}.matchteams{display:grid;grid-template-columns:1fr auto 1fr;align-items:start;gap:12px;margin:0 0 12px}.teamblock{text-align:center;min-width:0}.teamblock img{width:72px;height:72px;object-fit:contain;background:#fff;border-radius:12px;padding:5px;display:block;margin:0 auto 6px}.teamblock b{display:block;color:#fff;font-size:13px;line-height:1.2}.matchteams .vs{align-self:center;font-weight:900;color:#aaa;padding-top:20px}.goalieBadge{display:inline-block;margin:4px 0 0 7px;padding:3px 7px;border-radius:99px;background:#ffd21a;color:#000;font-size:10px;font-weight:900}
+
+.navinner{flex-wrap:wrap}
+.navlink{text-decoration:none;display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box}
+@media(max-width:760px){
+  .navinner{display:grid!important;grid-template-columns:1fr 1fr;gap:8px}
+  .navbtn,.navlink{width:100%;min-width:0;padding:10px 8px}
+}
 </style></head>
 <body>
 <header><div class="wrap"><div class="head">
@@ -56,6 +63,9 @@ details[open] summary{background:#ffd21a;color:#000}
 <nav class="mainnav" aria-label="Hauptnavigation"><div class="wrap navinner">
 <button class="navbtn active" data-page="gamesPage">🏒 Spiele</button>
 <button class="navbtn" data-page="rosterPage">👥 Kader</button>
+<a class="navbtn navlink" href="https://tehv.at/gamecenter?league=u11&amp;tab=schedule&amp;season=26%2F27" target="_blank" rel="noopener noreferrer">🏒 TEHV Gamecenter</a>
+<a class="navbtn navlink" href="https://www.ec-zirl.at/" target="_blank" rel="noopener noreferrer">🏠 EC Gunners</a>
+
 </div></nav>
 <main class="wrap">
 <section class="hero"><h2>🏒 Nächstes Spiel / nächster Termin</h2><div id="next" class="op">Wird geladen …</div><p id="meta"></p></section>
