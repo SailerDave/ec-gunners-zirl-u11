@@ -172,167 +172,8 @@ details[open] summary{background:#ffd21a;color:#000}
     border-bottom:1px solid #333;
   }
 }
-
-/* V8.0 – robuste mobile Filter-Schublade */
-#mobileFilterToggle,#mobileFilterDrawer,#mobileFilterBackdrop{display:none}
-
-@media(max-width:1100px){
-  html,body{width:100%!important;max-width:100%!important;overflow-x:hidden!important}
-
-  /* Hauptnavigation darf normal scrollen. */
-  .mainnav{position:relative!important;top:auto!important}
-
-  /* TEHV-Button und externe Navlinks sauber zentrieren */
-  .navinner .navlink{
-    display:flex!important;
-    align-items:center!important;
-    justify-content:center!important;
-    text-align:center!important;
-    white-space:normal!important;
-    line-height:1.15!important;
-  }
-
-  #mobileFilterToggle{
-    display:flex!important;
-    position:fixed!important;
-    top:8px!important;
-    right:8px!important;
-    z-index:30002!important;
-    align-items:center!important;
-    justify-content:center!important;
-    min-width:92px!important;
-    height:42px!important;
-    padding:0 14px!important;
-    border:2px solid #ffd21a!important;
-    border-radius:999px!important;
-    background:#111!important;
-    color:#ffd21a!important;
-    font-weight:900!important;
-    font-size:14px!important;
-    box-shadow:0 5px 18px rgba(0,0,0,.55)!important;
-  }
-
-  #mobileFilterBackdrop.open{
-    display:block!important;
-    position:fixed!important;
-    inset:0!important;
-    z-index:29998!important;
-    background:rgba(0,0,0,.48)!important;
-  }
-
-  #mobileFilterDrawer{
-    display:block!important;
-    position:fixed!important;
-    top:0!important;
-    left:0!important;
-    right:0!important;
-    z-index:30001!important;
-    width:100%!important;
-    max-width:100%!important;
-    box-sizing:border-box!important;
-    padding:58px 8px 9px!important;
-    background:#111!important;
-    border-bottom:3px solid #ffd21a!important;
-    box-shadow:0 8px 24px rgba(0,0,0,.65)!important;
-    transform:translateY(-105%)!important;
-    transition:transform .2s ease!important;
-    visibility:hidden!important;
-  }
-  #mobileFilterDrawer.open{
-    transform:translateY(0)!important;
-    visibility:visible!important;
-  }
-
-  #mobileFilterMount .filters{
-    position:static!important;
-    display:block!important;
-    width:100%!important;
-    max-width:100%!important;
-    box-sizing:border-box!important;
-    margin:0!important;
-    padding:0!important;
-    background:transparent!important;
-    border:0!important;
-    border-radius:0!important;
-    box-shadow:none!important;
-  }
-
-  #mobileFilterMount .filters .fg{
-    display:flex!important;
-    flex-flow:row wrap!important;
-    align-items:center!important;
-    gap:5px!important;
-    width:100%!important;
-    margin:0 0 8px!important;
-  }
-  #mobileFilterMount .filters .fg:last-child{margin-bottom:0!important}
-
-  #mobileFilterMount .filters .ft{
-    flex:0 0 100%!important;
-    width:100%!important;
-    margin:0 0 2px!important;
-    color:#ffd21a!important;
-    font-size:11px!important;
-    line-height:1!important;
-    font-weight:900!important;
-  }
-
-  #mobileFilterMount .filters button{
-    display:inline-flex!important;
-    align-items:center!important;
-    justify-content:center!important;
-    flex:1 1 72px!important;
-    width:auto!important;
-    min-width:0!important;
-    max-width:none!important;
-    padding:8px 7px!important;
-    font-size:11px!important;
-    line-height:1.1!important;
-    white-space:nowrap!important;
-    text-align:center!important;
-  }
-
-  main.wrap{
-    width:100%!important;
-    max-width:100%!important;
-    min-width:0!important;
-    box-sizing:border-box!important;
-    padding-left:8px!important;
-    padding-right:8px!important;
-  }
-  #gamesPage,#gamesPage #games,#gamesPage .game{
-    width:100%!important;
-    max-width:100%!important;
-    min-width:0!important;
-    box-sizing:border-box!important;
-    margin-left:0!important;
-    margin-right:0!important;
-  }
-  #gamesPage #games{
-    display:grid!important;
-    grid-template-columns:minmax(0,1fr)!important;
-    padding:0!important;
-  }
-
-  #gamesPage .bayernParticipants,#gamesPage .participants{
-    display:grid!important;
-    grid-template-columns:repeat(2,minmax(0,1fr))!important;
-    width:100%!important;
-    max-width:100%!important;
-    gap:7px!important;
-  }
-  #gamesPage .bayernParticipants .participant,#gamesPage .participants .participant{
-    width:100%!important;min-width:0!important;max-width:none!important;
-  }
-}
-@media(max-width:360px){
-  #gamesPage .bayernParticipants,#gamesPage .participants{grid-template-columns:1fr!important}
-}
 </style></head>
-<body><button id="mobileFilterToggle" type="button" aria-expanded="false" aria-controls="mobileFilterDrawer">⚙ Filter</button>
-<div id="mobileFilterDrawer" aria-hidden="true"><div id="mobileFilterMount"></div></div>
-<div id="mobileFilterBackdrop" aria-hidden="true"></div>
-
+<body>
 <header><div class="wrap"><div class="head">
 <img class="logo" src="logos/gunners.png" alt="EC Gunners Zirl Logo">
 <div class="brand">Parents-Page der Zirler U11</div><h1>U10/U11 – Alles auf einen Blick</h1>
@@ -510,57 +351,40 @@ document.addEventListener("click",e=>{if(e.target.closest(".age,.league,.side,.n
 </script>
 <script>
 (function(){
- const mq=window.matchMedia("(max-width:1100px)");
- let filter=null, marker=null, home=null;
- const toggle=()=>document.getElementById("mobileFilterToggle");
- const drawer=()=>document.getElementById("mobileFilterDrawer");
- const mount=()=>document.getElementById("mobileFilterMount");
- const backdrop=()=>document.getElementById("mobileFilterBackdrop");
+  function syncLeagueFilters(){
+    const activeAge=document.querySelector('.age.active');
+    const age=activeAge ? activeAge.dataset.v : "ALL";
 
- function closeDrawer(){
-   drawer()?.classList.remove("open");
-   backdrop()?.classList.remove("open");
-   drawer()?.setAttribute("aria-hidden","true");
-   toggle()?.setAttribute("aria-expanded","false");
- }
- function openDrawer(){
-   drawer()?.classList.add("open");
-   backdrop()?.classList.add("open");
-   drawer()?.setAttribute("aria-hidden","false");
-   toggle()?.setAttribute("aria-expanded","true");
- }
- function relocate(){
-   if(!filter){
-     filter=document.querySelector("#gamesPage .filters");
-     if(!filter)return;
-     home=filter.parentNode;
-     marker=document.createComment("filter-home");
-     home.insertBefore(marker,filter);
-   }
-   if(mq.matches){
-     if(filter.parentNode!==mount()) mount().appendChild(filter);
-   }else{
-     closeDrawer();
-     if(marker?.parentNode && filter.parentNode!==marker.parentNode)
-       marker.parentNode.insertBefore(filter,marker.nextSibling);
-   }
-   document.querySelectorAll('.league[data-v="Phase II"],.league[data-v="Phase 2"]').forEach(b=>b.remove());
- }
+    document.querySelectorAll('.league[data-v="Phase II"],.league[data-v="Phase 2"]')
+      .forEach(function(b){ b.remove(); });
 
- document.addEventListener("DOMContentLoaded",function(){
-   relocate();
-   toggle()?.addEventListener("click",function(){
-     drawer().classList.contains("open")?closeDrawer():openDrawer();
-   });
-   backdrop()?.addEventListener("click",closeDrawer);
+    document.querySelectorAll('.league[data-v="Bayernliga"]')
+      .forEach(function(b){
+        b.style.display = (age==="U10") ? "none" : "";
+      });
 
-   /* Nach einer Filterauswahl automatisch schließen. */
-   mount()?.addEventListener("click",function(e){
-     if(e.target.closest("button")) setTimeout(closeDrawer,120);
-   });
- });
- if(mq.addEventListener)mq.addEventListener("change",relocate); else mq.addListener(relocate);
- window.addEventListener("orientationchange",()=>setTimeout(relocate,100));
+    /* Falls beim Wechsel auf U10 gerade Bayernliga aktiv war:
+       Liga auf Alle zurücksetzen, damit U10-Spiele sichtbar bleiben. */
+    if(age==="U10"){
+      const activeBayern=document.querySelector('.league.active[data-v="Bayernliga"]');
+      if(activeBayern){
+        activeBayern.classList.remove("active");
+        const all=document.querySelector('.league[data-v="ALL"]');
+        if(all){
+          all.classList.add("active");
+          if(typeof st!=="undefined") st.league="ALL";
+          if(typeof render==="function") render();
+        }
+      }
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded",function(){
+    syncLeagueFilters();
+    document.querySelectorAll(".age").forEach(function(b){
+      b.addEventListener("click",function(){ setTimeout(syncLeagueFilters,0); });
+    });
+  });
 })();
 </script>
 </body></html>
