@@ -61,11 +61,122 @@ details[open] summary{background:#ffd21a;color:#000}
 .clubLogoLink{display:inline-flex;align-items:center;justify-content:center;text-decoration:none;border-radius:12px}
 .clubLogoLink:hover{transform:translateY(-2px);filter:brightness(1.08)}
 .clubLogoLink:focus{outline:2px solid #ffd21a;outline-offset:3px}
+
+/* V7.1 – Veranstalter wieder untereinander */
+.organizerClub,
+.tournamentHeader .organizerClub,
+.bayernTournamentHeader .organizerClub{
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:7px!important;
+  text-align:center!important;
+  width:100%;
+}
+.organizerClub img,
+.tournamentHeader .organizerClub img,
+.bayernTournamentHeader .organizerClub img{
+  display:block!important;
+  margin:0 auto!important;
+}
+.organizerClub strong,
+.tournamentHeader .organizerClub strong,
+.bayernTournamentHeader .organizerClub strong{
+  display:block!important;
+  width:100%;
+  text-align:center!important;
+}
+.organizerLabel{
+  text-align:center!important;
+  width:100%;
+}
+
+/* V7.2 – Veranstalter immer vertikal */
+.landesturnier .hostblock,
+.landesturnier a.hostblock,
+.landesturnier .hostLink{
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:7px!important;
+  text-align:center!important;
+  width:100%!important;
+  text-decoration:none;
+}
+.landesturnier .hostblock .clubLogoLink,
+.landesturnier .hostblock > a{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  width:auto!important;
+}
+.landesturnier .hostblock img{
+  display:block!important;
+  margin:0 auto!important;
+}
+.landesturnier .hostblock b,
+.landesturnier .hostblock strong{
+  display:block!important;
+  width:100%!important;
+  text-align:center!important;
+}
+
+/* V7.2 – Filterleiste dauerhaft links sichtbar */
+@media (min-width:1101px){
+  #gamesPage{position:relative}
+  #gamesPage > h2{margin-left:235px}
+  #gamesPage .filters{
+    position:fixed!important;
+    left:18px!important;
+    top:150px!important;
+    z-index:900!important;
+    width:205px!important;
+    max-height:calc(100vh - 175px);
+    overflow:auto;
+    margin:0!important;
+    padding:12px!important;
+    border:1px solid #3b3b3b;
+    border-radius:14px;
+    background:rgba(14,14,14,.97);
+    box-shadow:0 8px 28px rgba(0,0,0,.45);
+  }
+  #gamesPage .filters .fg{
+    display:flex!important;
+    flex-direction:column!important;
+    align-items:stretch!important;
+    gap:6px!important;
+    margin-bottom:12px;
+  }
+  #gamesPage .filters .fg:last-child{margin-bottom:0}
+  #gamesPage .filters .ft{
+    display:block;
+    margin:3px 0 2px;
+    text-align:left;
+    font-weight:900;
+    color:#ffd21a;
+  }
+  #gamesPage .filters button{width:100%;text-align:left}
+  #gamesPage #games,
+  #gamesPage > .note{margin-left:235px}
+}
+/* Auf kleineren Displays bleibt der Filter oben am Bildschirm erreichbar. */
+@media (max-width:1100px){
+  #gamesPage .filters{
+    position:sticky!important;
+    top:0!important;
+    z-index:850!important;
+    background:rgba(14,14,14,.97);
+    padding:9px 0;
+    border-bottom:1px solid #333;
+  }
+}
 </style></head>
 <body>
 <header><div class="wrap"><div class="head">
 <img class="logo" src="logos/gunners.png" alt="EC Gunners Zirl Logo">
-<div class="brand">Gunners Zirl</div><h1>U10/U11 – Alles auf einen Blick</h1>
+<div class="brand">Parents-Page der Zirler U11</div><h1>U10/U11 – Alles auf einen Blick</h1>
 </div></div></header>
 <nav class="mainnav" aria-label="Hauptnavigation"><div class="wrap navinner">
 <button class="navbtn active" data-page="gamesPage">🏒 Spiele</button>
