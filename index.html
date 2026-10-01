@@ -172,6 +172,50 @@ details[open] summary{background:#ffd21a;color:#000}
     border-bottom:1px solid #333;
   }
 }
+
+/* V8.2 – Trainer oberhalb des U11-Kaders */
+.u11-trainers{
+  display:flex;
+  justify-content:center;
+  align-items:flex-start;
+  gap:22px;
+  padding:18px 12px 6px;
+  text-align:center;
+}
+.trainer-card{
+  width:180px;
+  max-width:42vw;
+  background:#151515;
+  border:1px solid #333;
+  border-radius:14px;
+  padding:8px;
+  box-sizing:border-box;
+}
+.trainer-card img{
+  display:block;
+  width:100%;
+  aspect-ratio:1/1;
+  object-fit:cover;
+  border-radius:10px;
+  border:2px solid #ffd21a;
+}
+.trainer-card b{
+  display:block;
+  margin-top:8px;
+  font-size:16px;
+}
+.trainer-card span{
+  display:block;
+  margin-top:2px;
+  color:#ffd21a;
+  font-size:12px;
+  font-weight:900;
+}
+@media(max-width:520px){
+  .u11-trainers{gap:10px;padding:14px 6px 4px}
+  .trainer-card{width:145px;max-width:46vw;padding:6px}
+  .trainer-card b{font-size:14px}
+}
 </style></head>
 <body>
 <header><div class="wrap"><div class="head">
@@ -202,6 +246,17 @@ details[open] summary{background:#ffd21a;color:#000}
 <details><summary>U9</summary><div class="roster"><article class="player"><img src="bilder/Torfrau1.png" alt="Generische Comic-Eishockeyfigur für Rosa Jägert"><div><b>1. Rosa Jägert</b><span class="goalieBadge">🥅 Torhüter</span><span>U9</span></div></article><article class="player"><img src="bilder/Spieler10(1).png" alt="Generische Comic-Eishockeyfigur für Tobias Witting"><div><b>2. Tobias Witting</b><span>U9</span></div></article></div></details>
 <details><summary>U10</summary><div class="roster"><article class="player"><img src="bilder/Spieler14.png" alt="Generische Comic-Eishockeyfigur für Nathan Laner"><div><b>1. Nathan Laner</b><span>U10</span></div></article><article class="player"><img src="bilder/Spieler15.png" alt="Generische Comic-Eishockeyfigur für Matthias Sailer"><div><b>2. Matthias Sailer</b><span>U10</span></div></article><article class="player"><img src="bilder/Spieler16.png" alt="Generische Comic-Eishockeyfigur für Luis Kuen"><div><b>3. Luis Kuen</b><span>U10</span></div></article><article class="player"><img src="bilder/Spieler17.png" alt="Generische Comic-Eishockeyfigur für Lorenz Weber"><div><b>4. Lorenz Weber</b><span>U10</span></div></article><article class="player"><img src="bilder/Spieler18.png" alt="Generische Comic-Eishockeyfigur für Marco Profeta"><div><b>5. Marco Profeta</b><span>U10</span></div></article><article class="player"><img src="bilder/Spieler19.png" alt="Generische Comic-Eishockeyfigur für Adam Mraz"><div><b>6. Adam Mraz</b><span>U10</span></div></article><article class="player"><img src="bilder/Spieler9(1).png" alt="Generische Comic-Eishockeyfigur für Simon Ladinig"><div><b>7. Simon Ladinig</b><span>U10</span></div></article><article class="player"><img src="bilder/Tormann1.png" alt="Generische Comic-Eishockeyfigur für Vinzenz Weichselbaumer"><div><b>8. Vinzenz Weichselbaumer</b><span class="goalieBadge">🥅 Torhüter</span><span>U10</span></div></article></div></details>
 <details open><summary>U11 <span class="underbadge">+ 2 U13 Underage Spielerinnen</span></summary>
+<div class="u11-trainers">
+  <div class="trainer-card">
+    <img src="bilder/Trainer_Clemens.png" alt="Trainer Clemens">
+    <b>Clemens</b><span>Trainer</span>
+  </div>
+  <div class="trainer-card">
+    <img src="bilder/Trainer_Hannes.png" alt="Trainer Hannes">
+    <b>Hannes</b><span>Trainer</span>
+  </div>
+</div>
+
 <div class="roster"><article class="player"><img src="bilder/Spieler7.png" alt="Generische Comic-Eishockeyfigur für Felix Forstlechner"><div><b>1. Felix Forstlechner</b><span>U11</span></div></article><article class="player"><img src="bilder/Spieler8.png" alt="Generische Comic-Eishockeyfigur für Liam Schnaiter Gfrei"><div><b>2. Liam Schnaiter Gfrei</b><span>U11</span></div></article><article class="player"><img src="bilder/Spieler9.png" alt="Generische Comic-Eishockeyfigur für Luis Gschließer"><div><b>3. Luis Gschließer</b><span>U11</span></div></article><article class="player"><img src="bilder/Spieler10.png" alt="Generische Comic-Eishockeyfigur für Lukas Stolz"><div><b>4. Lukas Stolz</b><span>U11</span></div></article><article class="player"><img src="bilder/Spieler11.png" alt="Generische Comic-Eishockeyfigur für Niklas Apperl"><div><b>5. Niklas Apperl</b><span>U11</span></div></article><article class="player"><img src="bilder/Spielerin1.png" alt="Generische Comic-Eishockeyfigur für Paulina Fankhauser"><div><b>6. Paulina Fankhauser</b><span>U11</span></div></article><article class="player"><img src="bilder/Spieler12.png" alt="Generische Comic-Eishockeyfigur für Tobias Fidler"><div><b>7. Tobias Fidler</b><span>U11</span></div></article><article class="player"><img src="bilder/Spieler13.png" alt="Generische Comic-Eishockeyfigur für Valentin Wenschur"><div><b>8. Valentin Wenschur</b><span>U11</span></div></article><article class="player"><img src="bilder/Spieler14.png" alt="Generische Comic-Eishockeyfigur für Nathan Laner"><div><b>9. Nathan Laner</b><span>U11</span></div></article><article class="player"><img src="bilder/Spieler15.png" alt="Generische Comic-Eishockeyfigur für Matthias Sailer"><div><b>10. Matthias Sailer</b><span>U11</span></div></article><article class="player"><img src="bilder/Spieler16.png" alt="Generische Comic-Eishockeyfigur für Luis Kuen"><div><b>11. Luis Kuen</b><span>U11</span></div></article><article class="player"><img src="bilder/Spieler17.png" alt="Generische Comic-Eishockeyfigur für Lorenz Weber"><div><b>12. Lorenz Weber</b><span>U11</span></div></article><article class="player"><img src="bilder/Spieler18.png" alt="Generische Comic-Eishockeyfigur für Marco Profeta"><div><b>13. Marco Profeta</b><span>U11</span></div></article><article class="player"><img src="bilder/Spieler19.png" alt="Generische Comic-Eishockeyfigur für Adam Mraz"><div><b>14. Adam Mraz</b><span>U11</span></div></article><article class="player"><img src="bilder/Spieler9(1).png" alt="Generische Comic-Eishockeyfigur für Simon Ladinig"><div><b>15. Simon Ladinig</b><span>U11</span></div></article><article class="player"><img src="bilder/Tormann1.png" alt="Generische Comic-Eishockeyfigur für Vinzenz Weichselbaumer"><div><b>16. Vinzenz Weichselbaumer</b><span class="goalieBadge">🥅 Torhüter</span><span>U11</span></div></article><article class="player"><img src="bilder/Torfrau1.png" alt="Generische Comic-Eishockeyfigur für Rosa Jägert"><div><b>17. Rosa Jägert</b><span class="goalieBadge">🥅 Torhüter</span><span>U11</span></div></article><article class="player"><img src="bilder/Spieler10(1).png" alt="Generische Comic-Eishockeyfigur für Tobias Witting"><div><b>18. Tobias Witting</b><span>U11</span></div></article><article class="player special"><img src="bilder/Spielerin2.png" alt="Generische Comic-Eishockeyfigur für Anna Jägert"><div><b>19. Anna Jägert</b><span>U11</span><em>U13 Underage · Spielerin</em></div></article><article class="player special"><img src="bilder/Torfrau2.png" alt="Generische Comic-Eishockeyfigur für Maria Micic"><div><b>20. Maria Micic</b><span class="goalieBadge">🥅 Torhüter</span><span>U11</span><em>U13 Underage · Spielerin</em></div></article></div>
 <p class="note">Anna Jägert und Maria Micic sind als U13-Underage-Spielerinnen farblich markiert und zusätzlich im U11-Bereich dargestellt.</p>
 </details>
