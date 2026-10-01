@@ -57,21 +57,7 @@ details[open] summary{background:#ffd21a;color:#000}
 
 .landesturnier{border:1px solid #4a4a4a}.hostlabel{text-align:center;color:#ffd21a;font-size:12px;font-weight:900;letter-spacing:1.6px;margin-bottom:5px}.hostblock{text-align:center;margin-bottom:14px}.hostblock img{width:86px;height:86px;object-fit:contain;background:#fff;border-radius:14px;padding:6px;display:block;margin:0 auto 7px}.hostblock b{font-size:17px}.participantsTitle{text-align:center;color:#ffd21a;font-size:12px;font-weight:900;letter-spacing:1.2px;margin:15px 0 9px}.participants{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin:0 auto 8px;max-width:760px}.participant{width:112px;text-align:center;background:#181818;border:1px solid #333;border-radius:12px;padding:9px 6px}.participant img{width:58px;height:58px;object-fit:contain;background:#fff;border-radius:10px;padding:4px;display:block;margin:0 auto 6px}.participant b{font-size:11px;line-height:1.2;display:block}.landesturnier .matchinfo{border-top:1px solid #333;padding-top:12px}@media(max-width:600px){.participant{width:92px}.participant img{width:52px;height:52px}.hostblock img{width:76px;height:76px}}
 
-.bayernClass{margin:3px 0 12px;text-align:center;color:#ffd21a;font-size:13px;font-weight:900;letter-spacing:.35px}
-.tournamentTeams a.teamEntry{color:inherit;text-decoration:none}
-.tournamentTeams a.teamEntry:hover{transform:translateY(-2px);border-color:#ffd21a;box-shadow:0 4px 14px #0008}
-.tournamentTeams a.teamEntry:focus{outline:2px solid #ffd21a;outline-offset:2px}
-
-/* V6.9 – einheitliche Vereinslogo-Größen */
-.hostblock img,.organizerClub img{width:86px!important;height:86px!important;object-fit:contain!important;object-position:center!important;background:#fff!important;border-radius:14px!important;padding:6px!important;display:block!important;margin:0 auto 7px!important}
-.participant img,.tournamentTeams .teamEntry img{width:58px!important;height:58px!important;object-fit:contain!important;object-position:center!important;background:#fff!important;border-radius:10px!important;padding:4px!important;display:block!important;margin:0 auto 6px!important}
-.tournamentTeams{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin:0 auto 8px;max-width:860px}
-.tournamentTeams .teamEntry{width:132px;min-height:104px;text-align:center;background:#181818;border:1px solid #333;border-radius:12px;padding:9px 6px;display:flex;flex-direction:column;align-items:center;justify-content:flex-start}
-.tournamentTeams .teamEntry span{font-size:11px;line-height:1.2;font-weight:800;display:block}
-.organizerClub{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:#fff;text-decoration:none;margin-bottom:5px}
-.organizerClub strong{font-size:17px;line-height:1.2}
-.llClass{margin:3px 0 12px;text-align:center;color:#ffd21a;font-size:13px;font-weight:900;letter-spacing:.35px}
-@media(max-width:600px){.hostblock img,.organizerClub img{width:76px!important;height:76px!important}.participant img,.tournamentTeams .teamEntry img{width:52px!important;height:52px!important}.tournamentTeams .teamEntry{width:105px}}
+.competitionClass{text-align:center;color:#ffd21a;font-size:13px;font-weight:900;letter-spacing:.35px;margin:-4px 0 13px}.hostLink{display:block;color:inherit;text-decoration:none}.participantLink{display:block;color:inherit;text-decoration:none;box-sizing:border-box}.participantLink:hover,.hostLink:hover{border-color:#ffd21a}.hostblock img,.participant img,.teamblock img{object-fit:contain!important;box-sizing:border-box!important}.bayernParticipants{display:grid!important;grid-template-columns:repeat(5,minmax(0,1fr))!important;flex-wrap:nowrap!important;max-width:900px!important;width:100%;gap:8px!important}.bayernParticipants .participant{width:auto!important;min-width:0!important}.bayernParticipants .participant img{width:58px!important;height:58px!important}.bayernParticipants .participant b{overflow-wrap:anywhere}@media(max-width:700px){.bayernParticipants{grid-template-columns:repeat(5,minmax(72px,1fr))!important;overflow-x:auto!important;justify-content:start!important;padding-bottom:5px}.bayernParticipants .participant{min-width:72px!important}.bayernParticipants .participant img{width:48px!important;height:48px!important}.bayernParticipants .participant b{font-size:9px!important}}
 </style></head>
 <body>
 <header><div class="wrap"><div class="head">
@@ -144,7 +130,27 @@ function llParticipants(g){
  if(g.age==='U10' && g.league.indexOf('Landesliga')===0)return u10LLTeams[g.date]||null;
  return null;
 }
-function participantHtml(name){return '<div class="participant"><img src="'+clubLogo(name)+'" alt="'+name+' Logo"><b>'+name+'</b></div>'}
+function clubUrl(name){
+ const t=(name||'').toLowerCase();
+ if(t.includes('gunners')||t.includes('zirl'))return 'https://www.ec-zirl.at/';
+ if(t.includes('füssen'))return 'https://evfuessen.de/';
+ if(t.includes('landsberg')||t.includes('riverkings'))return 'https://hc-landsberg.de/';
+ if(t.includes('riessersee')||t.includes('peißenberg'))return 'https://www.scr-eishockey.de/';
+ if(t.includes('peiting')||t.includes('schongau'))return 'https://www.ec-peiting.de/';
+ return '';
+}
+const bayernTeams=['EV Füssen II','HC Landsberg Riverkings II','SG Peißenberg Miners II / SC Riessersee II','SG EC Peiting II / TSV Schongau 1863 II','EC Gunners Zirl'];
+function participantHtml(name,linked){
+ const inner='<img src="'+clubLogo(name)+'" alt="'+name+' Logo"><b>'+name+'</b>';
+ const url=linked?clubUrl(name):'';
+ return url?'<a class="participant participantLink" href="'+url+'" target="_blank" rel="noopener noreferrer" title="Homepage '+name+'">'+inner+'</a>':'<div class="participant">'+inner+'</div>';
+}
+function bayernHostHtml(g){
+ const name=g.opponent==='Gunners Zirl'?'EC Gunners Zirl':g.opponent;
+ const inner='<img src="'+teamLogo(g)+'" alt="'+name+' Logo"><b>'+name+'</b>';
+ const url=clubUrl(name);
+ return '<div class="hostlabel">VERANSTALTER</div>'+(url?'<a class="hostblock hostLink" href="'+url+'" target="_blank" rel="noopener noreferrer" title="Homepage '+name+'">'+inner+'</a>':'<div class="hostblock">'+inner+'</div>');
+}
 function render(){
  const r=games.filter(ok).slice().sort((a,b)=>dateKey(a.date)-dateKey(b.date)), box=document.getElementById("games");
  box.innerHTML=r.length?r.map(g=>{
@@ -153,9 +159,16 @@ function render(){
    const cancelled=g.opponent.includes('22. Int. U10 Kinderturnier');
    const ll=llParticipants(g);
    if(ll){
-     const phase=(g.age==='U11' && g.league==='Landesliga P1')?'<div class="llClass">Landesliga · Phase 1 · Gruppe Arlberg</div>':''; const host='<div class="hostlabel">VERANSTALTER</div><div class="hostblock"><img src="'+teamLogo(g)+'" alt="'+g.opponent+' Logo"><b>'+g.opponent+'</b></div>'+phase;
-     const participants='<div class="participantsTitle">TEILNEHMENDE MANNSCHAFTEN</div><div class="participants">'+ll.map(participantHtml).join('')+'</div>';
-     return '<article class="game landesturnier">'+host+'<div class="matchinfo"><div class="date"><b>'+g.date+'</b>'+(g.time?'<span>'+g.time+' Uhr</span>':"")+'</div><div class="tags"><span>'+g.age+'</span><span>'+g.league+'</span></div><p>🏒 '+g.venue+'</p><p>🚗 '+km+' <small>Pkw-Richtwert ab Zirl</small></p>'+route+'</div>'+participants+'</article>';
+     const host='<div class="hostlabel">VERANSTALTER</div><div class="hostblock"><img src="'+teamLogo(g)+'" alt="'+g.opponent+' Logo"><b>'+g.opponent+'</b></div>';
+     const group=g.age==='U11'&&g.league==='Landesliga P1'?'<div class="competitionClass">Landesliga · Phase 1 · Gruppe Arlberg</div>':'';
+     const participants='<div class="participantsTitle">TEILNEHMENDE MANNSCHAFTEN</div><div class="participants">'+ll.map(n=>participantHtml(n,false)).join('')+'</div>';
+     return '<article class="game landesturnier">'+host+group+'<div class="matchinfo"><div class="date"><b>'+g.date+'</b>'+(g.time?'<span>'+g.time+' Uhr</span>':"")+'</div><div class="tags"><span>'+g.age+'</span><span>'+g.league+'</span></div><p>🏒 '+g.venue+'</p><p>🚗 '+km+' <small>Pkw-Richtwert ab Zirl</small></p>'+route+'</div>'+participants+'</article>';
+   }
+   if(g.age==='U11' && g.league==='Bayernliga'){
+     const host=bayernHostHtml(g);
+     const group='<div class="competitionClass">Bayernliga · Leistungsklasse C · Gruppe 1</div>';
+     const participants='<div class="participantsTitle">TEILNEHMENDE MANNSCHAFTEN</div><div class="participants bayernParticipants">'+bayernTeams.map(n=>participantHtml(n,true)).join('')+'</div>';
+     return '<article class="game landesturnier bayernturnier">'+host+group+'<div class="matchinfo"><div class="date"><b>'+g.date+'</b>'+(g.time?'<span>'+g.time+' Uhr</span>':"")+'</div><div class="tags"><span>'+g.age+'</span><span>Bayernliga</span></div><p>🏒 '+g.venue+'</p><p>🚗 '+km+' <small>Pkw-Richtwert ab Zirl</small></p>'+route+'</div>'+participants+'</article>';
    }
    const teams='<div class="matchteams"><div class="teamblock"><img src="logos/gunners.png" alt="Gunners Zirl Logo"><b>Gunners Zirl</b></div><span class="vs">vs.</span><div class="teamblock"><img src="'+teamLogo(g)+'" alt="'+g.opponent+' Logo"><b>'+g.opponent+'</b></div></div>';
    return '<article class="game'+(cancelled?' cancelledGame':'')+'">'+teams+'<div class="matchinfo"><div class="date"><b>'+g.date+'</b>'+(g.time?'<span>'+g.time+' Uhr</span>':"")+'</div><div class="tags"><span>'+g.age+'</span><span>'+(g.league||"Termin")+'</span><span>'+g.side+'</span></div><p>🏒 '+g.venue+'</p><p>🚗 '+km+' <small>Pkw-Richtwert ab Zirl</small></p>'+route+'</div></article>';
@@ -195,71 +208,4 @@ btn.classList.add("active");
 document.getElementById(btn.dataset.page).classList.add("activePage");
 window.scrollTo({top:0,behavior:"smooth"});
 }));
-</script>
-<script>
-(function(){
-const BAYERN_TEAMS=[
- {name:"EV Füssen II", logo:"logos/fuessen.png", url:"https://evfuessen.de/"},
- {name:"HC Landsberg Riverkings II", logo:"logos/riverkings.png", url:"https://hc-landsberg.de/"},
- {name:"SG Peißenberg Miners II / SC Riessersee II", logo:"logos/riessersee.png", url:"https://www.scr-eishockey.de/"},
- {name:"SG EC Peiting II / TSV Schongau 1863 II", logo:"logos/peiting.png", url:"https://www.ec-peiting.de/"},
- {name:"EC Gunners Zirl", logo:"logos/gunners.png", url:"https://www.ec-zirl.at/"}
-];
-
-function bayernOrganizer(card){
- const txt=(card.innerText||"").toLowerCase();
- if(txt.includes("füssen")) return {name:"EV Füssen II",logo:"logos/fuessen.png",url:"https://evfuessen.de/"};
- if(txt.includes("landsberg")) return {name:"HC Landsberg Riverkings II",logo:"logos/riverkings.png",url:"https://hc-landsberg.de/"};
- if(txt.includes("peißenberg")||txt.includes("riessersee")) return {name:"SG Peißenberg Miners II / SC Riessersee II",logo:"logos/riessersee.png",url:"https://www.scr-eishockey.de/"};
- if(txt.includes("peiting")||txt.includes("schongau")) return {name:"SG EC Peiting II / TSV Schongau 1863 II",logo:"logos/peiting.png",url:"https://www.ec-peiting.de/"};
- if(txt.includes("zirl")) return {name:"EC Gunners Zirl",logo:"logos/gunners.png",url:"https://www.ec-zirl.at/"};
- return null;
-}
-
-function teamHTML(t){
- return '<a class="teamEntry" href="'+t.url+'" target="_blank" rel="noopener noreferrer" title="Homepage '+t.name+'">'+
- '<img src="'+t.logo+'" alt="Logo '+t.name+'"><span>'+t.name+'</span></a>';
-}
-
-function enhanceBayern(){
- document.querySelectorAll(".game").forEach(card=>{
-   const txt=card.innerText||"";
-   if(!/\bU11\b/.test(txt) || !/Bayernliga/i.test(txt) || card.dataset.bayernEnhanced==="1") return;
-
-   const organizer=bayernOrganizer(card);
-   if(!organizer) return;
-   card.dataset.bayernEnhanced="1";
-
-   // Remove the old VS/logo header only; retain the date/venue/km/route details.
-   const oldHeader=card.querySelector(".teamlogos,.matchup,.versus,.teams");
-   if(oldHeader) oldHeader.remove();
-
-   const content=card.querySelector("div:nth-child(2)") || card;
-   const head=document.createElement("div");
-   head.className="tournamentHeader bayernTournamentHeader";
-   head.innerHTML=
-     '<div class="organizerLabel">VERANSTALTER</div>'+
-     '<a class="organizerClub" href="'+organizer.url+'" target="_blank" rel="noopener noreferrer" title="Homepage '+organizer.name+'">'+
-       '<img src="'+organizer.logo+'" alt="Logo '+organizer.name+'"><strong>'+organizer.name+'</strong>'+
-     '</a>'+
-     '<div class="bayernClass">Bayernliga · Leistungsklasse C · Gruppe 1</div>';
-   content.prepend(head);
-
-   // Existing opponent heading is redundant in tournament mode.
-   const h3=content.querySelector("h3");
-   if(h3) h3.style.display="none";
-
-   // Add all participating teams after the game details.
-   if(!content.querySelector(".bayernParticipants")){
-     const block=document.createElement("div");
-     block.className="bayernParticipants";
-     block.innerHTML='<div class="participantsTitle">TEILNEHMENDE MANNSCHAFTEN</div>'+
-       '<div class="tournamentTeams">'+BAYERN_TEAMS.map(teamHTML).join("")+'</div>';
-     content.appendChild(block);
-   }
- });
-}
-document.addEventListener("DOMContentLoaded",()=>{setTimeout(enhanceBayern,0);setTimeout(enhanceBayern,150);});
-})();
-</script>
-</body></html>
+</script></body></html>
