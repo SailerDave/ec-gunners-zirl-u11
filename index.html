@@ -172,6 +172,78 @@ details[open] summary{background:#ffd21a;color:#000}
     border-bottom:1px solid #333;
   }
 }
+
+/* V7.3 – Mobile Filter über die komplette Bildschirmbreite */
+@media (max-width:1100px){
+  #gamesPage .filters{
+    position:sticky!important;
+    top:0!important;
+    left:0!important;
+    right:0!important;
+    z-index:950!important;
+    width:100%!important;
+    max-width:none!important;
+    box-sizing:border-box!important;
+    margin:0!important;
+    padding:8px 10px!important;
+    background:rgba(14,14,14,.98)!important;
+    border:0!important;
+    border-bottom:2px solid #ffd21a!important;
+    border-radius:0!important;
+    box-shadow:0 5px 14px rgba(0,0,0,.35)!important;
+    overflow-x:hidden!important;
+  }
+
+  #gamesPage .filters .fg{
+    display:flex!important;
+    flex-direction:row!important;
+    align-items:center!important;
+    flex-wrap:wrap!important;
+    gap:5px!important;
+    width:100%!important;
+    margin:0 0 5px!important;
+  }
+  #gamesPage .filters .fg:last-child{margin-bottom:0!important}
+
+  #gamesPage .filters .ft{
+    flex:0 0 100%!important;
+    width:100%!important;
+    margin:1px 0 2px!important;
+    font-size:11px!important;
+    line-height:1.1!important;
+    text-align:left!important;
+    color:#ffd21a!important;
+  }
+
+  #gamesPage .filters button{
+    width:auto!important;
+    min-width:0!important;
+    flex:1 1 auto!important;
+    padding:7px 9px!important;
+    font-size:12px!important;
+    line-height:1.15!important;
+    text-align:center!important;
+    white-space:nowrap!important;
+  }
+
+  #gamesPage,
+  #gamesPage #games,
+  #gamesPage > .note,
+  #gamesPage > h2{
+    margin-left:0!important;
+  }
+}
+
+/* Auf sehr schmalen Smartphones Buttons kompakter halten */
+@media (max-width:520px){
+  #gamesPage .filters{padding:6px 7px!important}
+  #gamesPage .filters .fg{gap:4px!important;margin-bottom:4px!important}
+  #gamesPage .filters button{
+    padding:6px 6px!important;
+    font-size:11px!important;
+  }
+  #gamesPage .filters .ft{font-size:10px!important}
+}
 </style></head>
 <body>
 <header><div class="wrap"><div class="head">
