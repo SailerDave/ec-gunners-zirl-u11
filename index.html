@@ -173,93 +173,128 @@ details[open] summary{background:#ffd21a;color:#000}
   }
 }
 
-/* V7.3 – Mobile Filter über die komplette Bildschirmbreite */
+/* V7.5 – Mobile Optimierung auf Basis der stabilen V7.2 */
 @media (max-width:1100px){
+  html, body{
+    width:100%;
+    max-width:100%;
+    overflow-x:hidden!important;
+  }
+
+  #gamesPage{
+    position:relative!important;
+    width:100%!important;
+    max-width:100%!important;
+    margin:0!important;
+    padding:0!important;
+    overflow:visible!important;
+  }
+
+  /* Sticky funktioniert innerhalb des normalen Dokumentflusses. */
   #gamesPage .filters{
+    position:-webkit-sticky!important;
     position:sticky!important;
     top:0!important;
     left:0!important;
     right:0!important;
-    z-index:950!important;
+    z-index:1000!important;
+
+    display:block!important;
+    visibility:visible!important;
+    opacity:1!important;
+
     width:100%!important;
-    max-width:none!important;
+    max-width:100%!important;
+    min-width:0!important;
     box-sizing:border-box!important;
+
     margin:0!important;
-    padding:8px 10px!important;
-    background:rgba(14,14,14,.98)!important;
+    padding:8px!important;
+    background:#111!important;
     border:0!important;
     border-bottom:2px solid #ffd21a!important;
     border-radius:0!important;
-    box-shadow:0 5px 14px rgba(0,0,0,.35)!important;
-    overflow-x:hidden!important;
+    box-shadow:0 4px 12px rgba(0,0,0,.45)!important;
+    overflow:visible!important;
   }
 
   #gamesPage .filters .fg{
     display:flex!important;
     flex-direction:row!important;
-    align-items:center!important;
     flex-wrap:wrap!important;
-    gap:5px!important;
+    align-items:center!important;
+    justify-content:flex-start!important;
     width:100%!important;
-    margin:0 0 5px!important;
+    max-width:100%!important;
+    gap:5px!important;
+    margin:0 0 6px!important;
+    padding:0!important;
+    overflow:visible!important;
   }
   #gamesPage .filters .fg:last-child{margin-bottom:0!important}
 
   #gamesPage .filters .ft{
+    display:block!important;
     flex:0 0 100%!important;
     width:100%!important;
-    margin:1px 0 2px!important;
-    font-size:11px!important;
-    line-height:1.1!important;
-    text-align:left!important;
+    margin:0 0 2px!important;
+    padding:0!important;
     color:#ffd21a!important;
+    font-size:10px!important;
+    line-height:1.1!important;
+    font-weight:900!important;
+    text-align:left!important;
   }
 
   #gamesPage .filters button{
+    display:inline-flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    flex:1 1 auto!important;
     width:auto!important;
     min-width:0!important;
-    flex:1 1 auto!important;
-    padding:7px 9px!important;
-    font-size:12px!important;
-    line-height:1.15!important;
-    text-align:center!important;
+    max-width:100%!important;
+    box-sizing:border-box!important;
+    margin:0!important;
+    padding:7px 8px!important;
+    font-size:11px!important;
+    line-height:1.1!important;
     white-space:nowrap!important;
   }
 
-  #gamesPage,
+  /* Inhalte laufen normal unter der Sticky-Leiste weiter. */
+  #gamesPage > h2,
   #gamesPage #games,
-  #gamesPage > .note,
-  #gamesPage > h2{
+  #gamesPage > .note{
     margin-left:0!important;
+    margin-right:0!important;
+    width:100%!important;
+    max-width:100%!important;
+    box-sizing:border-box!important;
+  }
+
+  #gamesPage #games{
+    position:relative!important;
+    z-index:1!important;
+    padding:8px!important;
+  }
+
+  #gamesPage .game{
+    width:100%!important;
+    max-width:100%!important;
+    box-sizing:border-box!important;
   }
 }
 
-/* Auf sehr schmalen Smartphones Buttons kompakter halten */
-@media (max-width:520px){
-  #gamesPage .filters{padding:6px 7px!important}
-  #gamesPage .filters .fg{gap:4px!important;margin-bottom:4px!important}
+@media (max-width:480px){
+  #gamesPage .filters{padding:6px!important}
+  #gamesPage .filters .fg{gap:4px!important;margin-bottom:5px!important}
+  #gamesPage .filters .ft{font-size:9px!important}
   #gamesPage .filters button{
-    padding:6px 6px!important;
-    font-size:11px!important;
+    padding:6px!important;
+    font-size:10px!important;
   }
-  #gamesPage .filters .ft{font-size:10px!important}
 }
-
-/* V7.4 mobile */
-@media(max-width:1100px){
-html,body{overflow-x:hidden!important}
-#gamesPage{width:100%!important;max-width:100%!important;margin:0!important;padding:0!important;overflow:visible!important}
-#gamesPage .filters{position:-webkit-sticky!important;position:sticky!important;top:0!important;z-index:9999!important;width:100%!important;max-width:none!important;box-sizing:border-box!important;margin:0!important;padding:7px 8px!important;background:#111!important;border:0!important;border-bottom:2px solid #ffd21a!important;border-radius:0!important;box-shadow:0 5px 14px #0008!important}
-#gamesPage .filters .fg{display:flex!important;flex-flow:row nowrap!important;align-items:center!important;gap:4px!important;width:100%!important;margin:0 0 5px!important;overflow-x:auto!important;overflow-y:hidden!important;scrollbar-width:none;-webkit-overflow-scrolling:touch}
-#gamesPage .filters .fg::-webkit-scrollbar{display:none}
-#gamesPage .filters .fg:last-child{margin-bottom:0!important}
-#gamesPage .filters .ft{flex:0 0 auto!important;width:auto!important;margin:0 3px 0 0!important;font-size:10px!important;white-space:nowrap!important;color:#ffd21a!important}
-#gamesPage .filters button{flex:0 0 auto!important;width:auto!important;min-width:0!important;padding:6px 8px!important;font-size:11px!important;line-height:1.1!important;white-space:nowrap!important;text-align:center!important}
-#gamesPage>h2,#gamesPage #games,#gamesPage>.note{margin-left:0!important;margin-right:0!important;max-width:100%!important;box-sizing:border-box!important}
-#gamesPage #games{position:relative!important;z-index:1!important;padding:8px!important}
-#gamesPage .game{width:100%!important;max-width:100%!important;box-sizing:border-box!important}
-}
-@media(max-width:480px){#gamesPage .filters{padding:6px!important}#gamesPage .filters .fg{gap:3px!important;margin-bottom:4px!important}#gamesPage .filters .ft{font-size:9px!important}#gamesPage .filters button{font-size:10px!important;padding:6px 7px!important}}
 </style></head>
 <body>
 <header><div class="wrap"><div class="head">
@@ -383,7 +418,7 @@ function updateLeagueButtonsForAge(){
     btn.style.display = hideU11Only ? "none" : "";
   });
 
-  if(hideU11Only && (st.league === "Bayernliga" || st.league === "Phase II")){
+  if(hideU11Only && (st.league === "Bayernliga")){
     st.league = "ALL";
     document.querySelectorAll(".league").forEach(x=>x.classList.remove("active"));
     const allLeague=document.querySelector('.league[data-v="ALL"]');
@@ -436,4 +471,11 @@ document.querySelectorAll(".game").forEach(card=>{
 document.addEventListener("DOMContentLoaded",()=>{setTimeout(apply,0);setTimeout(apply,200)});
 document.addEventListener("click",e=>{if(e.target.closest(".age,.league,.side,.navbtn")){setTimeout(apply,50);setTimeout(apply,250)}});
 })();
-</script><script>(function(){function c(){document.querySelectorAll('.league[data-v="Phase II"],.league[data-v="Phase 2"]').forEach(b=>b.remove())}document.addEventListener("DOMContentLoaded",c);document.addEventListener("click",()=>setTimeout(c,0));})();</script></body></html>
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", function(){
+  document.querySelectorAll('.league[data-v="Phase II"],.league[data-v="Phase 2"]')
+    .forEach(function(b){ b.remove(); });
+});
+</script>
+</body></html>
