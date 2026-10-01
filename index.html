@@ -58,6 +58,9 @@ details[open] summary{background:#ffd21a;color:#000}
 .landesturnier{border:1px solid #4a4a4a}.hostlabel{text-align:center;color:#ffd21a;font-size:12px;font-weight:900;letter-spacing:1.6px;margin-bottom:5px}.hostblock{text-align:center;margin-bottom:14px}.hostblock img{width:86px;height:86px;object-fit:contain;background:#fff;border-radius:14px;padding:6px;display:block;margin:0 auto 7px}.hostblock b{font-size:17px}.participantsTitle{text-align:center;color:#ffd21a;font-size:12px;font-weight:900;letter-spacing:1.2px;margin:15px 0 9px}.participants{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin:0 auto 8px;max-width:760px}.participant{width:112px;text-align:center;background:#181818;border:1px solid #333;border-radius:12px;padding:9px 6px}.participant img{width:58px;height:58px;object-fit:contain;background:#fff;border-radius:10px;padding:4px;display:block;margin:0 auto 6px}.participant b{font-size:11px;line-height:1.2;display:block}.landesturnier .matchinfo{border-top:1px solid #333;padding-top:12px}@media(max-width:600px){.participant{width:92px}.participant img{width:52px;height:52px}.hostblock img{width:76px;height:76px}}
 
 .competitionClass{text-align:center;color:#ffd21a;font-size:13px;font-weight:900;letter-spacing:.35px;margin:-4px 0 13px}.hostLink{display:block;color:inherit;text-decoration:none}.participantLink{display:block;color:inherit;text-decoration:none;box-sizing:border-box}.participantLink:hover,.hostLink:hover{border-color:#ffd21a}.hostblock img,.participant img,.teamblock img{object-fit:contain!important;box-sizing:border-box!important}.bayernParticipants{display:grid!important;grid-template-columns:repeat(5,minmax(0,1fr))!important;flex-wrap:nowrap!important;max-width:900px!important;width:100%;gap:8px!important}.bayernParticipants .participant{width:auto!important;min-width:0!important}.bayernParticipants .participant img{width:58px!important;height:58px!important}.bayernParticipants .participant b{overflow-wrap:anywhere}@media(max-width:700px){.bayernParticipants{grid-template-columns:repeat(5,minmax(72px,1fr))!important;overflow-x:auto!important;justify-content:start!important;padding-bottom:5px}.bayernParticipants .participant{min-width:72px!important}.bayernParticipants .participant img{width:48px!important;height:48px!important}.bayernParticipants .participant b{font-size:9px!important}}
+.clubLogoLink{display:inline-flex;align-items:center;justify-content:center;text-decoration:none;border-radius:12px}
+.clubLogoLink:hover{transform:translateY(-2px);filter:brightness(1.08)}
+.clubLogoLink:focus{outline:2px solid #ffd21a;outline-offset:3px}
 </style></head>
 <body>
 <header><div class="wrap"><div class="head">
@@ -208,4 +211,30 @@ btn.classList.add("active");
 document.getElementById(btn.dataset.page).classList.add("activePage");
 window.scrollTo({top:0,behavior:"smooth"});
 }));
+</script><script>
+(function(){
+const URLS={
+"Gunners Zirl":"https://www.ec-zirl.at/","EC Gunners Zirl":"https://www.ec-zirl.at/",
+"Silz Bulls":"https://www.silzbulls.com/","Telfs Knights":"https://www.telfs-knights.com/",
+"EC Ehrwald":"https://www.ecehrwald.com/","Scorpions Imst":"https://i-ec.at/",
+"IEC Scorpions Imst":"https://i-ec.at/","EC Götzens":"https://www.ecgoetzens.com/",
+"HCI Team Rot":"https://www.hcinnsbruck.at/"};
+function club(t){t=(t||"").replace(/\s+/g," ").trim().toLowerCase();return Object.keys(URLS).find(n=>t.includes(n.toLowerCase()))||null}
+function apply(){
+document.querySelectorAll(".game").forEach(card=>{
+ if(!/Landesliga/i.test(card.innerText||""))return;
+ card.querySelectorAll("img").forEach(img=>{
+  if(img.closest("a"))return;
+  let node=img.parentElement,n=null,steps=0;
+  while(node&&node!==card&&steps++<3){n=club(node.innerText||"");if(n)break;node=node.parentElement}
+  if(!n)n=club(img.alt||"");
+  if(!n)return;
+  const a=document.createElement("a");a.href=URLS[n];a.target="_blank";a.rel="noopener noreferrer";
+  a.title="Homepage "+n;a.className="clubLogoLink";img.parentNode.insertBefore(a,img);a.appendChild(img);
+ });
+});
+}
+document.addEventListener("DOMContentLoaded",()=>{setTimeout(apply,0);setTimeout(apply,200)});
+document.addEventListener("click",e=>{if(e.target.closest(".age,.league,.side,.navbtn")){setTimeout(apply,50);setTimeout(apply,250)}});
+})();
 </script></body></html>
