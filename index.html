@@ -173,21 +173,53 @@ details[open] summary{background:#ffd21a;color:#000}
   }
 }
 
-/* V7.6 – zuverlässiger mobiler Filter */
+/* V7.7 — echte Sticky-Lösung, Basis V7.2 */
 @media(max-width:1100px){
-  html,body{overflow-x:hidden!important}
+  html,body{
+    overflow-x:hidden!important;
+    overflow-y:visible!important;
+  }
 
-  #gamesPage .filters{
-    position:fixed!important;
-    top:var(--mobile-nav-h,0px)!important;
-    left:0!important;
-    right:0!important;
-    z-index:10000!important;
+  /* Kein Vorfahr des Sticky-Elements darf vertikal scrollen/clipping erzeugen. */
+  main,.wrap,.container,#gamesPage{
+    overflow:visible!important;
+    transform:none!important;
+    filter:none!important;
+    perspective:none!important;
+    contain:none!important;
+  }
+
+  #gamesPage{
+    width:100%!important;
+    max-width:100%!important;
+    margin:0!important;
+    padding:0!important;
+  }
+
+  .mobileStickyFilterShell{
+    position:-webkit-sticky!important;
+    position:sticky!important;
+    top:0!important;
+    z-index:9999!important;
+    width:100%!important;
+    max-width:100%!important;
+    margin:0!important;
+    padding:0!important;
+    background:#111!important;
+    align-self:flex-start!important;
+  }
+
+  /* Der Filter selbst ist NICHT sticky/fixed; nur die äußere Shell ist sticky. */
+  .mobileStickyFilterShell .filters{
+    position:relative!important;
+    top:auto!important;
+    left:auto!important;
+    right:auto!important;
+    z-index:auto!important;
     display:block!important;
-    visibility:visible!important;
-    opacity:1!important;
-    width:100vw!important;
-    max-width:100vw!important;
+    width:100%!important;
+    max-width:100%!important;
+    min-width:0!important;
     box-sizing:border-box!important;
     margin:0!important;
     padding:7px 8px!important;
@@ -195,20 +227,22 @@ details[open] summary{background:#ffd21a;color:#000}
     border:0!important;
     border-bottom:2px solid #ffd21a!important;
     border-radius:0!important;
-    box-shadow:0 5px 14px rgba(0,0,0,.55)!important;
+    box-shadow:0 4px 12px rgba(0,0,0,.45)!important;
+    overflow:visible!important;
   }
 
-  #gamesPage .filters .fg{
+  .mobileStickyFilterShell .filters .fg{
     display:flex!important;
     flex-flow:row wrap!important;
     align-items:center!important;
-    gap:4px!important;
+    justify-content:flex-start!important;
     width:100%!important;
+    gap:4px!important;
     margin:0 0 5px!important;
   }
-  #gamesPage .filters .fg:last-child{margin-bottom:0!important}
+  .mobileStickyFilterShell .filters .fg:last-child{margin-bottom:0!important}
 
-  #gamesPage .filters .ft{
+  .mobileStickyFilterShell .filters .ft{
     flex:0 0 100%!important;
     width:100%!important;
     margin:0 0 1px!important;
@@ -218,43 +252,38 @@ details[open] summary{background:#ffd21a;color:#000}
     font-weight:900!important;
   }
 
-  #gamesPage .filters button{
+  .mobileStickyFilterShell .filters button{
     display:inline-flex!important;
     align-items:center!important;
     justify-content:center!important;
     flex:1 1 auto!important;
     width:auto!important;
     min-width:0!important;
+    max-width:100%!important;
     padding:6px 7px!important;
     font-size:11px!important;
     line-height:1.1!important;
     white-space:nowrap!important;
   }
 
-  /* Platzhalter verhindert, dass die ersten Spiele unter dem fixed Filter liegen. */
-  #mobileFilterSpacer{
-    display:block!important;
-    width:100%!important;
-    height:var(--mobile-filter-h,0px)!important;
-  }
-
-  #gamesPage>h2,
-  #gamesPage #games,
-  #gamesPage>.note{
+  #gamesPage>h2,#gamesPage #games,#gamesPage>.note{
     margin-left:0!important;
     margin-right:0!important;
+    width:100%!important;
     max-width:100%!important;
     box-sizing:border-box!important;
   }
   #gamesPage #games{padding:8px!important}
   #gamesPage .game{width:100%!important;max-width:100%!important;box-sizing:border-box!important}
 }
-@media(min-width:1101px){#mobileFilterSpacer{display:none!important}}
+@media(min-width:1101px){
+  .mobileStickyFilterShell{display:contents!important}
+}
 @media(max-width:480px){
-  #gamesPage .filters{padding:6px!important}
-  #gamesPage .filters .fg{gap:3px!important;margin-bottom:4px!important}
-  #gamesPage .filters .ft{font-size:9px!important}
-  #gamesPage .filters button{font-size:10px!important;padding:6px!important}
+  .mobileStickyFilterShell .filters{padding:6px!important}
+  .mobileStickyFilterShell .filters .fg{gap:3px!important;margin-bottom:4px!important}
+  .mobileStickyFilterShell .filters .ft{font-size:9px!important}
+  .mobileStickyFilterShell .filters button{font-size:10px!important;padding:6px!important}
 }
 </style></head>
 <body>
@@ -272,12 +301,11 @@ details[open] summary{background:#ffd21a;color:#000}
 <main class="wrap">
 <section class="hero"><h2>🏒 Nächstes Spiel / nächster Termin</h2><div id="next" class="op">Wird geladen …</div><p id="meta"></p></section>
 <section id="gamesPage" class="page activePage"><h2>📅 Termine</h2>
-<div class="filters">
+<div class="mobileStickyFilterShell"><div class="filters">
 <div class="fg"><span class="ft">Altersklasse</span><button class="age active" data-v="ALL">Alle</button><button class="age" data-v="U11">U11</button><button class="age" data-v="U10">U10</button></div>
 <div class="fg"><span class="ft">Liga</span><button class="league active" data-v="ALL">Alle</button><button class="league" data-v="Landesliga">Landesliga</button><button class="league u11-only-league" data-v="Bayernliga">Bayernliga</button><button class="league" data-v="Turnier">Turnier</button></div>
 <div class="fg"><span class="ft">Ort</span><button class="side active" data-v="ALL">Alle</button><button class="side" data-v="Heim">Heim</button><button class="side" data-v="Auswärts">Auswärts</button><button class="side" data-v="Offen">Offen</button></div>
-</div>
-<div id="mobileFilterSpacer" aria-hidden="true"></div>
+</div></div>
 <div id="games" class="games"></div>
 <p class="note">Pkw-Angaben sind Richtwerte ab Zirl. Die Routen-Schaltfläche öffnet Google Maps; Kilometer können je nach exaktem Ziel und Route abweichen.</p>
 </section>
@@ -433,35 +461,8 @@ document.querySelectorAll(".game").forEach(card=>{
 document.addEventListener("DOMContentLoaded",()=>{setTimeout(apply,0);setTimeout(apply,200)});
 document.addEventListener("click",e=>{if(e.target.closest(".age,.league,.side,.navbtn")){setTimeout(apply,50);setTimeout(apply,250)}});
 })();
-</script>
-<script>
-(function(){
-  function sizeMobileFilter(){
-    const mobile=window.matchMedia("(max-width:1100px)").matches;
-    const nav=document.querySelector(".mainnav");
-    const filter=document.querySelector("#gamesPage .filters");
-    if(!filter) return;
-
-    if(mobile){
-      const navH=nav ? Math.ceil(nav.getBoundingClientRect().height) : 0;
-      document.documentElement.style.setProperty("--mobile-nav-h",navH+"px");
-      requestAnimationFrame(function(){
-        const filterH=Math.ceil(filter.getBoundingClientRect().height);
-        document.documentElement.style.setProperty("--mobile-filter-h",filterH+"px");
-      });
-    }else{
-      document.documentElement.style.removeProperty("--mobile-nav-h");
-      document.documentElement.style.removeProperty("--mobile-filter-h");
-    }
-  }
-
-  document.addEventListener("DOMContentLoaded",function(){
-    document.querySelectorAll('.league[data-v="Phase II"],.league[data-v="Phase 2"]').forEach(b=>b.remove());
-    sizeMobileFilter();
-    setTimeout(sizeMobileFilter,100);
-  });
-  window.addEventListener("resize",sizeMobileFilter,{passive:true});
-  window.addEventListener("orientationchange",function(){setTimeout(sizeMobileFilter,150)});
-})();
-</script>
-</body></html>
+</script><script>
+document.addEventListener("DOMContentLoaded",function(){
+ document.querySelectorAll('.league[data-v="Phase II"],.league[data-v="Phase 2"]').forEach(function(b){b.remove();});
+});
+</script></body></html>
