@@ -216,6 +216,72 @@ details[open] summary{background:#ffd21a;color:#000}
   .trainer-card{width:145px;max-width:46vw;padding:6px}
   .trainer-card b{font-size:14px}
 }
+
+/* V8.3 – U11 Trainer auf Mobilgeräten ausdrücklich sichtbar */
+@media (max-width:1100px){
+  #rosterPage details[open] .u11-trainers,
+  .u11-trainers{
+    display:flex!important;
+    visibility:visible!important;
+    opacity:1!important;
+    position:relative!important;
+    flex-direction:row!important;
+    flex-wrap:nowrap!important;
+    justify-content:center!important;
+    align-items:flex-start!important;
+    gap:10px!important;
+    width:100%!important;
+    max-width:100%!important;
+    height:auto!important;
+    max-height:none!important;
+    overflow:visible!important;
+    box-sizing:border-box!important;
+    margin:0 auto 12px!important;
+    padding:12px 6px 4px!important;
+  }
+
+  .u11-trainers .trainer-card{
+    display:block!important;
+    visibility:visible!important;
+    opacity:1!important;
+    flex:0 1 150px!important;
+    width:calc(50% - 5px)!important;
+    max-width:150px!important;
+    min-width:0!important;
+    height:auto!important;
+    overflow:visible!important;
+    box-sizing:border-box!important;
+  }
+
+  .u11-trainers .trainer-card img{
+    display:block!important;
+    visibility:visible!important;
+    opacity:1!important;
+    width:100%!important;
+    max-width:100%!important;
+    height:auto!important;
+    aspect-ratio:1/1!important;
+    object-fit:cover!important;
+  }
+
+  .u11-trainers .trainer-card b,
+  .u11-trainers .trainer-card span{
+    display:block!important;
+    visibility:visible!important;
+    opacity:1!important;
+    text-align:center!important;
+  }
+}
+
+@media (max-width:380px){
+  .u11-trainers{gap:6px!important;padding-left:3px!important;padding-right:3px!important}
+  .u11-trainers .trainer-card{
+    width:calc(50% - 3px)!important;
+    padding:5px!important;
+  }
+  .u11-trainers .trainer-card b{font-size:13px!important}
+  .u11-trainers .trainer-card span{font-size:11px!important}
+}
 </style></head>
 <body>
 <header><div class="wrap"><div class="head">
