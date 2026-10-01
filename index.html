@@ -173,7 +173,9 @@ details[open] summary{background:#ffd21a;color:#000}
   }
 }
 
-/* V7.8 – Mobile Neuaufbau auf Basis V7.2 */
+/* V7.9 – mobiler Filter als echtes Top-Level-Sticky-Element */
+#mobileFilterPortal{display:none}
+
 @media(max-width:1100px){
   html,body{
     width:100%!important;
@@ -181,78 +183,71 @@ details[open] summary{background:#ffd21a;color:#000}
     overflow-x:hidden!important;
   }
 
-  /* Entscheidend: auf Mobilgeräten gibt es nur EIN sticky Element. */
+  /* Hauptnavigation scrollt mobil weg; danach übernimmt ausschließlich der Filter. */
   .mainnav{
-    position:static!important;
+    position:relative!important;
     top:auto!important;
   }
 
-  body>.wrap,
-  main.wrap,
-  .wrap{
-    width:100%!important;
-    max-width:100%!important;
-    min-width:0!important;
-    box-sizing:border-box!important;
+  /* TEHV / EC-Gunners Links mobil sauber zentrieren */
+  .navinner .navlink{
+    display:flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    text-align:center!important;
+    line-height:1.15!important;
+    white-space:normal!important;
   }
 
-  main.wrap{
-    padding-left:8px!important;
-    padding-right:8px!important;
-    overflow:visible!important;
-  }
-
-  #gamesPage{
-    position:relative!important;
-    width:100%!important;
-    max-width:100%!important;
-    min-width:0!important;
-    margin-left:0!important;
-    margin-right:0!important;
-    overflow:visible!important;
-  }
-
-  /* Einziger Sticky-Balken */
-  #gamesPage .filters{
+  #mobileFilterPortal{
+    display:block!important;
     position:-webkit-sticky!important;
     position:sticky!important;
     top:0!important;
-    z-index:5000!important;
+    z-index:20000!important;
+    width:100%!important;
+    max-width:100%!important;
+    margin:0!important;
+    padding:0!important;
+    background:#0d0d0d!important;
+    border-bottom:2px solid #ffd21a!important;
+    box-shadow:0 5px 14px rgba(0,0,0,.55)!important;
+  }
+
+  #mobileFilterPortal .filters{
+    position:static!important;
     display:block!important;
     visibility:visible!important;
     opacity:1!important;
-    width:calc(100% + 16px)!important;
-    max-width:none!important;
+    width:100%!important;
+    max-width:100%!important;
     min-width:0!important;
     box-sizing:border-box!important;
-    margin-left:-8px!important;
-    margin-right:-8px!important;
-    margin-bottom:10px!important;
+    margin:0!important;
     padding:7px 8px!important;
     background:#0d0d0d!important;
     border:0!important;
-    border-bottom:2px solid #ffd21a!important;
     border-radius:0!important;
-    box-shadow:0 4px 12px rgba(0,0,0,.55)!important;
+    box-shadow:none!important;
     overflow:visible!important;
   }
 
-  #gamesPage .filters .fg{
+  #mobileFilterPortal .filters .fg{
     display:flex!important;
     flex-flow:row wrap!important;
     align-items:center!important;
-    gap:4px!important;
     width:100%!important;
     max-width:100%!important;
+    gap:4px!important;
     margin:0 0 5px!important;
     padding:0!important;
   }
-  #gamesPage .filters .fg:last-child{margin-bottom:0!important}
+  #mobileFilterPortal .filters .fg:last-child{margin-bottom:0!important}
 
-  #gamesPage .filters .ft{
+  #mobileFilterPortal .filters .ft{
     flex:0 0 auto!important;
     width:auto!important;
-    min-width:54px!important;
+    min-width:52px!important;
     margin:0 3px 0 0!important;
     color:#ffd21a!important;
     font-size:10px!important;
@@ -261,7 +256,7 @@ details[open] summary{background:#ffd21a;color:#000}
     white-space:nowrap!important;
   }
 
-  #gamesPage .filters button{
+  #mobileFilterPortal .filters button{
     display:inline-flex!important;
     align-items:center!important;
     justify-content:center!important;
@@ -274,88 +269,60 @@ details[open] summary{background:#ffd21a;color:#000}
     font-size:10px!important;
     line-height:1.1!important;
     white-space:nowrap!important;
+    text-align:center!important;
   }
 
-  #gamesPage>h2,
-  #gamesPage #games,
-  #gamesPage>.note{
+  main.wrap{
     width:100%!important;
     max-width:100%!important;
     min-width:0!important;
+    box-sizing:border-box!important;
+    padding-left:8px!important;
+    padding-right:8px!important;
+  }
+  #gamesPage,
+  #gamesPage #games,
+  #gamesPage .game{
+    width:100%!important;
+    max-width:100%!important;
+    min-width:0!important;
+    box-sizing:border-box!important;
     margin-left:0!important;
     margin-right:0!important;
-    box-sizing:border-box!important;
   }
-
   #gamesPage #games{
     display:grid!important;
     grid-template-columns:minmax(0,1fr)!important;
     padding:0!important;
-    overflow:visible!important;
   }
 
-  #gamesPage .game,
-  #gamesPage .matchinfo,
-  #gamesPage .landesturnier{
-    width:100%!important;
-    max-width:100%!important;
-    min-width:0!important;
-    box-sizing:border-box!important;
-    overflow:hidden!important;
-  }
-
-  /* Turnierteams im Hochformat nicht mehr als 5 breite Spalten erzwingen. */
+  /* Turnieransichten im Hochformat */
   #gamesPage .bayernParticipants,
   #gamesPage .participants{
     display:grid!important;
     grid-template-columns:repeat(2,minmax(0,1fr))!important;
     width:100%!important;
     max-width:100%!important;
-    min-width:0!important;
     gap:7px!important;
     overflow:visible!important;
-    padding:0!important;
   }
-
   #gamesPage .bayernParticipants .participant,
   #gamesPage .participants .participant{
     width:100%!important;
     min-width:0!important;
     max-width:none!important;
-    box-sizing:border-box!important;
-  }
-
-  #gamesPage .participant b{
-    overflow-wrap:anywhere!important;
-    word-break:normal!important;
-  }
-
-  #gamesPage .hostblock,
-  #gamesPage .teamblock{
-    max-width:100%!important;
-    min-width:0!important;
   }
 }
 
 @media(max-width:480px){
-  main.wrap{padding-left:6px!important;padding-right:6px!important}
-  #gamesPage .filters{
-    width:calc(100% + 12px)!important;
-    margin-left:-6px!important;
-    margin-right:-6px!important;
-    padding:6px!important;
-  }
-  #gamesPage .filters .fg{gap:3px!important;margin-bottom:4px!important}
-  #gamesPage .filters .ft{font-size:9px!important;min-width:48px!important}
-  #gamesPage .filters button{font-size:9px!important;padding:6px 5px!important}
+  #mobileFilterPortal .filters{padding:6px!important}
+  #mobileFilterPortal .filters .fg{gap:3px!important;margin-bottom:4px!important}
+  #mobileFilterPortal .filters .ft{min-width:46px!important;font-size:9px!important}
+  #mobileFilterPortal .filters button{font-size:9px!important;padding:6px 5px!important}
 }
-
-/* Sehr schmale Geräte: Teilnehmer untereinander statt abgeschnitten. */
 @media(max-width:360px){
   #gamesPage .bayernParticipants,
-  #gamesPage .participants{
-    grid-template-columns:1fr!important;
-  }
+  #gamesPage .participants{grid-template-columns:1fr!important}
 }
 </style></head>
 <body>
@@ -369,7 +336,7 @@ details[open] summary{background:#ffd21a;color:#000}
 <a class="navbtn navlink" href="https://tehv.at/gamecenter?league=u11&amp;tab=schedule&amp;season=26%2F27" target="_blank" rel="noopener noreferrer">🏒 TEHV Gamecenter</a>
 <a class="navbtn navlink" href="https://www.ec-zirl.at/" target="_blank" rel="noopener noreferrer">🏠 EC Gunners</a>
 
-</div></nav>
+</div></nav><div id="mobileFilterPortal" aria-label="Spielfilter"></div>
 <main class="wrap">
 <section class="hero"><h2>🏒 Nächstes Spiel / nächster Termin</h2><div id="next" class="op">Wird geladen …</div><p id="meta"></p></section>
 <section id="gamesPage" class="page activePage"><h2>📅 Termine</h2>
@@ -533,8 +500,40 @@ document.querySelectorAll(".game").forEach(card=>{
 document.addEventListener("DOMContentLoaded",()=>{setTimeout(apply,0);setTimeout(apply,200)});
 document.addEventListener("click",e=>{if(e.target.closest(".age,.league,.side,.navbtn")){setTimeout(apply,50);setTimeout(apply,250)}});
 })();
-</script><script>
-document.addEventListener("DOMContentLoaded",function(){
-  document.querySelectorAll('.league[data-v="Phase II"],.league[data-v="Phase 2"]').forEach(function(b){b.remove();});
-});
-</script></body></html>
+</script>
+<script>
+(function(){
+  const mq=window.matchMedia("(max-width:1100px)");
+  let home=null, filter=null, marker=null;
+
+  function setup(){
+    if(!filter){
+      filter=document.querySelector("#gamesPage .filters");
+      if(!filter) return;
+      home=filter.parentNode;
+      marker=document.createComment("filters-home");
+      home.insertBefore(marker,filter);
+    }
+
+    const portal=document.getElementById("mobileFilterPortal");
+    if(!portal) return;
+
+    if(mq.matches){
+      if(filter.parentNode!==portal) portal.appendChild(filter);
+    }else{
+      if(filter.parentNode===portal && marker && marker.parentNode){
+        marker.parentNode.insertBefore(filter,marker.nextSibling);
+      }
+    }
+
+    document.querySelectorAll('.league[data-v="Phase II"],.league[data-v="Phase 2"]')
+      .forEach(function(b){b.remove();});
+  }
+
+  document.addEventListener("DOMContentLoaded",setup);
+  if(mq.addEventListener) mq.addEventListener("change",setup);
+  else mq.addListener(setup);
+  window.addEventListener("orientationchange",function(){setTimeout(setup,100)});
+})();
+</script>
+</body></html>
