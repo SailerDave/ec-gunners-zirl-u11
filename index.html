@@ -279,6 +279,36 @@ details[open] summary{background:#ffd21a;color:#000}
     position:static!important;
   }
 }
+
+/* V8.9 – mobiler oberer Block wieder volle Inhaltsbreite */
+@media(max-width:1100px){
+  #gamesPage{
+    width:100%!important;
+    max-width:100%!important;
+    box-sizing:border-box!important;
+  }
+
+  #gamesPage > h2,
+  #gamesPage > .note,
+  #gamesPage > .next,
+  #gamesPage > .nextgame,
+  #gamesPage > .hero,
+  #gamesPage > .summary,
+  #gamesPage > div:not(.filters):not(#games){
+    width:100%!important;
+    max-width:100%!important;
+    box-sizing:border-box!important;
+    margin-left:0!important;
+    margin-right:0!important;
+  }
+
+  /* Der Filterknopf schwebt nur darüber und beeinflusst keine Blockbreite. */
+  #mobileCompactFilter{
+    position:fixed!important;
+    float:none!important;
+    margin:0!important;
+  }
+}
 </style></head>
 <body>
 <header><div class="wrap"><div class="head">
