@@ -309,6 +309,47 @@ details[open] summary{background:#ffd21a;color:#000}
     margin:0!important;
   }
 }
+
+/* V9.0 – mobil: Hero/oberer Terminblock exakt so breit wie die Spielkarten */
+@media(max-width:1100px){
+  main.wrap{
+    width:100%!important;
+    max-width:100%!important;
+    box-sizing:border-box!important;
+    padding-left:8px!important;
+    padding-right:8px!important;
+    margin-left:0!important;
+    margin-right:0!important;
+  }
+
+  main.wrap > .hero{
+    display:block!important;
+    width:100%!important;
+    max-width:100%!important;
+    min-width:0!important;
+    box-sizing:border-box!important;
+    margin-left:0!important;
+    margin-right:0!important;
+  }
+
+  #gamesPage,
+  #gamesPage #games,
+  #gamesPage .game{
+    width:100%!important;
+    max-width:100%!important;
+    min-width:0!important;
+    box-sizing:border-box!important;
+    margin-left:0!important;
+    margin-right:0!important;
+  }
+
+  /* Der Filterbutton bleibt reines Overlay und nimmt keinerlei Layoutbreite ein. */
+  #mobileCompactFilter{
+    position:fixed!important;
+    float:none!important;
+    clear:none!important;
+  }
+}
 </style></head>
 <body>
 <header><div class="wrap"><div class="head">
