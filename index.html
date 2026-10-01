@@ -282,6 +282,34 @@ details[open] summary{background:#ffd21a;color:#000}
   .u11-trainers .trainer-card b{font-size:13px!important}
   .u11-trainers .trainer-card span{font-size:11px!important}
 }
+
+/* V8.4 – drei U11-Trainer */
+.u11-trainers{
+  flex-wrap:nowrap!important;
+}
+.u11-trainers .trainer-card{
+  flex:0 1 180px;
+}
+@media(max-width:600px){
+  .u11-trainers{
+    gap:7px!important;
+    padding-left:3px!important;
+    padding-right:3px!important;
+  }
+  .u11-trainers .trainer-card{
+    flex:1 1 0!important;
+    width:calc(33.333% - 5px)!important;
+    max-width:145px!important;
+    min-width:0!important;
+    padding:5px!important;
+  }
+  .u11-trainers .trainer-card b{
+    font-size:12px!important;
+  }
+  .u11-trainers .trainer-card span{
+    font-size:10px!important;
+  }
+}
 </style></head>
 <body>
 <header><div class="wrap"><div class="head">
@@ -320,6 +348,10 @@ details[open] summary{background:#ffd21a;color:#000}
   <div class="trainer-card">
     <img src="bilder/Trainer_Hannes.png" alt="Trainer Hannes">
     <b>Hannes</b><span>Trainer</span>
+  </div>
+  <div class="trainer-card">
+    <img src="bilder/Trainer_Markus.png" alt="Trainer Markus">
+    <b>Markus</b><span>Trainer</span>
   </div>
 </div>
 
