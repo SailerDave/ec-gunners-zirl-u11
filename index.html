@@ -54,6 +54,13 @@ details[open] summary{background:#ffd21a;color:#000}
   .navinner{display:grid!important;grid-template-columns:1fr 1fr;gap:8px}
   .navbtn,.navlink{width:100%;min-width:0;padding:10px 8px}
 }
+
+.landesturnier{border:1px solid #4a4a4a}.hostlabel{text-align:center;color:#ffd21a;font-size:12px;font-weight:900;letter-spacing:1.6px;margin-bottom:5px}.hostblock{text-align:center;margin-bottom:14px}.hostblock img{width:86px;height:86px;object-fit:contain;background:#fff;border-radius:14px;padding:6px;display:block;margin:0 auto 7px}.hostblock b{font-size:17px}.participantsTitle{text-align:center;color:#ffd21a;font-size:12px;font-weight:900;letter-spacing:1.2px;margin:15px 0 9px}.participants{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin:0 auto 8px;max-width:760px}.participant{width:112px;text-align:center;background:#181818;border:1px solid #333;border-radius:12px;padding:9px 6px}.participant img{width:58px;height:58px;object-fit:contain;background:#fff;border-radius:10px;padding:4px;display:block;margin:0 auto 6px}.participant b{font-size:11px;line-height:1.2;display:block}.landesturnier .matchinfo{border-top:1px solid #333;padding-top:12px}@media(max-width:600px){.participant{width:92px}.participant img{width:52px;height:52px}.hostblock img{width:76px;height:76px}}
+
+.bayernClass{margin:3px 0 12px;text-align:center;color:#ffd21a;font-size:13px;font-weight:900;letter-spacing:.35px}
+.tournamentTeams a.teamEntry{color:inherit;text-decoration:none}
+.tournamentTeams a.teamEntry:hover{transform:translateY(-2px);border-color:#ffd21a;box-shadow:0 4px 14px #0008}
+.tournamentTeams a.teamEntry:focus{outline:2px solid #ffd21a;outline-offset:2px}
 </style></head>
 <body>
 <header><div class="wrap"><div class="head">
@@ -72,7 +79,7 @@ details[open] summary{background:#ffd21a;color:#000}
 <section id="gamesPage" class="page activePage"><h2>📅 Termine</h2>
 <div class="filters">
 <div class="fg"><span class="ft">Altersklasse</span><button class="age active" data-v="ALL">Alle</button><button class="age" data-v="U11">U11</button><button class="age" data-v="U10">U10</button></div>
-<div class="fg"><span class="ft">Liga</span><button class="league active" data-v="ALL">Alle</button><button class="league" data-v="Landesliga">Landesliga</button><button class="league" data-v="Bayernliga">Bayernliga</button><button class="league" data-v="Turnier">Turnier</button><button class="league" data-v="Phase II">Phase II</button></div>
+<div class="fg"><span class="ft">Liga</span><button class="league active" data-v="ALL">Alle</button><button class="league" data-v="Landesliga">Landesliga</button><button class="league u11-only-league" data-v="Bayernliga">Bayernliga</button><button class="league" data-v="Turnier">Turnier</button><button class="league u11-only-league" data-v="Phase II">Phase II</button></div>
 <div class="fg"><span class="ft">Ort</span><button class="side active" data-v="ALL">Alle</button><button class="side" data-v="Heim">Heim</button><button class="side" data-v="Auswärts">Auswärts</button><button class="side" data-v="Offen">Offen</button></div>
 </div>
 <div id="games" class="games"></div>
@@ -91,44 +98,80 @@ details[open] summary{background:#ffd21a;color:#000}
 <footer>EC Gunners Zirl · Elternportal U10/U11 · Termine bitte mit den offiziellen Vereins-/Ligaangaben abgleichen.</footer>
 </main>
 <script>
-const games=[{"date": "24.10.2026", "time": "", "age": "U11", "league": "Turnier", "opponent": "ASKÖ U11 Turnier", "venue": "Kuppelarena Telfs", "side": "Auswärts", "km": 17}, {"date": "07.11.2026", "time": "09:00", "age": "U11", "league": "Bayernliga", "opponent": "SG EC Peiting II / TSV Schongau 1863 II", "venue": "Schongau", "side": "Auswärts", "km": 93}, {"date": "07.11.2026", "time": "09:30", "age": "U10", "league": "", "opponent": "EC Telfs", "venue": "Kuppelarena Telfs", "side": "Auswärts", "km": 17}, {"date": "21.11.2026", "time": "10:00", "age": "U11", "league": "Bayernliga", "opponent": "Gunners Zirl", "venue": "Zirl", "side": "Heim", "km": 0}, {"date": "22.11.2026", "time": "", "age": "U11", "league": "Landesliga P1", "opponent": "Silz Bulls", "venue": "Silz", "side": "Auswärts", "km": 28}, {"date": "28.11.2026", "time": "", "age": "U10", "league": "", "opponent": "EC Götzens", "venue": "Götzens", "side": "Auswärts", "km": 15}, {"date": "29.11.2026", "time": "", "age": "U11", "league": "Landesliga P1", "opponent": "EC Ehrwald", "venue": "Ehrwald", "side": "Auswärts", "km": 64}, {"date": "06.12.2026", "time": "09:00", "age": "U11", "league": "Landesliga P1", "opponent": "Gunners Zirl", "venue": "Zirl", "side": "Heim", "km": 0}, {"date": "09.–11.10.2026", "time": "", "age": "U10", "league": "Turnier", "opponent": "22. Int. U10 Kinderturnier – EHC Montafon", "venue": "Aktivpark Montafon / Tschagguns", "side": "Auswärts", "km": 129}, {"date": "12.12.2026", "time": "17:30", "age": "U10", "league": "", "opponent": "Gunners Zirl", "venue": "Zirl", "side": "Heim", "km": 0}, {"date": "13.12.2026", "time": "", "age": "U11", "league": "Landesliga P1", "opponent": "IEC Scorpions Imst", "venue": "Imst", "side": "Auswärts", "km": 47}, {"date": "19.12.2026", "time": "", "age": "U10", "league": "", "opponent": "Silz Bulls", "venue": "Silz", "side": "Auswärts", "km": 28}, {"date": "20.12.2026", "time": "11:00", "age": "U11", "league": "Bayernliga", "opponent": "Gunners Zirl", "venue": "Zirl", "side": "Heim", "km": 0}, {"date": "27.12.2026", "time": "", "age": "U11", "league": "Landesliga P2", "opponent": "Termin offen", "venue": "Ort offen", "side": "Offen", "km": null}, {"date": "30.12.2026", "time": "", "age": "U10", "league": "Phase II", "opponent": "Termin offen", "venue": "Ort offen", "side": "Offen", "km": null}, {"date": "02.01.2027", "time": "13:30", "age": "U11", "league": "Bayernliga", "opponent": "EV Füssen II", "venue": "Füssen", "side": "Auswärts", "km": 92}, {"date": "02.01.2027", "time": "", "age": "U10", "league": "", "opponent": "EC Ehrwald", "venue": "Ehrwald", "side": "Auswärts", "km": 64}, {"date": "03.01.2027", "time": "", "age": "U11", "league": "Landesliga P2", "opponent": "Termin offen", "venue": "Ort offen", "side": "Offen", "km": null}, {"date": "06.01.2027", "time": "09:30", "age": "U11", "league": "Bayernliga", "opponent": "SG EC Peiting II / TSV Schongau 1863 II", "venue": "Peiting", "side": "Auswärts", "km": 89}, {"date": "09.01.2027", "time": "", "age": "U10", "league": "Phase II", "opponent": "Termin offen", "venue": "Ort offen", "side": "Offen", "km": null}, {"date": "16.01.2027", "time": "10:00", "age": "U11", "league": "Bayernliga", "opponent": "Gunners Zirl", "venue": "Zirl", "side": "Heim", "km": 0}, {"date": "23.01.2027", "time": "09:00", "age": "U11", "league": "Bayernliga", "opponent": "SG EC Peiting II / TSV Schongau 1863 II", "venue": "Schongau", "side": "Auswärts", "km": 93}, {"date": "23.01.2027", "time": "", "age": "U10", "league": "Phase II", "opponent": "Termin offen", "venue": "Ort offen", "side": "Offen", "km": null}, {"date": "30.01.2027", "time": "11:50", "age": "U11", "league": "Bayernliga", "opponent": "SG Peißenberg Miners II / SC Riessersee II", "venue": "Peißenberg", "side": "Auswärts", "km": 88}, {"date": "31.01.2027", "time": "", "age": "U11", "league": "Landesliga P2", "opponent": "Termin offen", "venue": "Ort offen", "side": "Offen", "km": null}, {"date": "06.02.2027", "time": "", "age": "U10", "league": "Phase II", "opponent": "Termin offen", "venue": "Ort offen", "side": "Offen", "km": null}, {"date": "07.02.2027", "time": "", "age": "U11", "league": "Landesliga P3", "opponent": "Termin offen", "venue": "Ort offen", "side": "Offen", "km": null}, {"date": "14.02.2027", "time": "", "age": "U11", "league": "Landesliga P3", "opponent": "Termin offen", "venue": "Ort offen", "side": "Offen", "km": null}, {"date": "20.02.2027", "time": "11:10", "age": "U11", "league": "Bayernliga", "opponent": "HC Landsberg Riverkings II", "venue": "Landsberg am Lech", "side": "Auswärts", "km": 121}, {"date": "20.02.2027", "time": "", "age": "U10", "league": "Phase II", "opponent": "Termin offen", "venue": "Ort offen", "side": "Offen", "km": null}, {"date": "21.02.2027", "time": "", "age": "U11", "league": "Landesliga P3", "opponent": "Termin offen", "venue": "Ort offen", "side": "Offen", "km": null}, {"date": "27.02.2027", "time": "11:10", "age": "U11", "league": "Bayernliga", "opponent": "HC Landsberg Riverkings II", "venue": "Landsberg am Lech", "side": "Auswärts", "km": 121}, {"date": "06.03.2027", "time": "13:05", "age": "U11", "league": "Bayernliga", "opponent": "SG Peißenberg Miners II / SC Riessersee II", "venue": "Riessersee / Garmisch-Partenkirchen", "side": "Auswärts", "km": 42}, {"date": "13.03.2027", "time": "09:30", "age": "U11", "league": "Bayernliga", "opponent": "EV Füssen II", "venue": "Füssen", "side": "Auswärts", "km": 92}];
+const games=[{"date": "24.10.2026", "time": "", "age": "U11", "league": "Turnier", "opponent": "ASKÖ U11 Turnier", "venue": "Kuppelarena Telfs", "side": "Auswärts", "km": 17}, {"date": "07.11.2026", "time": "09:00", "age": "U11", "league": "Bayernliga", "opponent": "SG EC Peiting II / TSV Schongau 1863 II", "venue": "Schongau", "side": "Auswärts", "km": 93}, {"date": "07.11.2026", "time": "09:30", "age": "U10", "league": "Landesliga", "opponent": "EC Telfs", "venue": "Kuppelarena Telfs", "side": "Auswärts", "km": 17}, {"date": "21.11.2026", "time": "10:00", "age": "U11", "league": "Bayernliga", "opponent": "Gunners Zirl", "venue": "Zirl", "side": "Heim", "km": 0}, {"date": "22.11.2026", "time": "", "age": "U11", "league": "Landesliga P1", "opponent": "Silz Bulls", "venue": "Silz", "side": "Auswärts", "km": 28}, {"date": "28.11.2026", "time": "", "age": "U10", "league": "Landesliga", "opponent": "EC Götzens", "venue": "Götzens", "side": "Auswärts", "km": 15}, {"date": "29.11.2026", "time": "", "age": "U11", "league": "Landesliga P1", "opponent": "EC Ehrwald", "venue": "Ehrwald", "side": "Auswärts", "km": 64}, {"date": "06.12.2026", "time": "09:00", "age": "U11", "league": "Landesliga P1", "opponent": "Gunners Zirl", "venue": "Zirl", "side": "Heim", "km": 0}, {"date": "09.–11.10.2026", "time": "", "age": "U10", "league": "Turnier", "opponent": "22. Int. U10 Kinderturnier – EHC Montafon", "venue": "Aktivpark Montafon / Tschagguns", "side": "Auswärts", "km": 129}, {"date": "12.12.2026", "time": "17:30", "age": "U10", "league": "Landesliga", "opponent": "Gunners Zirl", "venue": "Zirl", "side": "Heim", "km": 0}, {"date": "13.12.2026", "time": "", "age": "U11", "league": "Landesliga P1", "opponent": "IEC Scorpions Imst", "venue": "Imst", "side": "Auswärts", "km": 47}, {"date": "19.12.2026", "time": "", "age": "U10", "league": "Landesliga", "opponent": "Silz Bulls", "venue": "Silz", "side": "Auswärts", "km": 28}, {"date": "20.12.2026", "time": "11:00", "age": "U11", "league": "Bayernliga", "opponent": "Gunners Zirl", "venue": "Zirl", "side": "Heim", "km": 0}, {"date": "27.12.2026", "time": "", "age": "U11", "league": "Landesliga P2", "opponent": "Termin offen", "venue": "Ort offen", "side": "Offen", "km": null}, {"date": "30.12.2026", "time": "", "age": "U10", "league": "Landesliga", "opponent": "Termin offen", "venue": "Ort offen", "side": "Offen", "km": null}, {"date": "02.01.2027", "time": "13:30", "age": "U11", "league": "Bayernliga", "opponent": "EV Füssen II", "venue": "Füssen", "side": "Auswärts", "km": 92}, {"date": "02.01.2027", "time": "", "age": "U10", "league": "Landesliga", "opponent": "EC Ehrwald", "venue": "Ehrwald", "side": "Auswärts", "km": 64}, {"date": "03.01.2027", "time": "", "age": "U11", "league": "Landesliga P2", "opponent": "Termin offen", "venue": "Ort offen", "side": "Offen", "km": null}, {"date": "06.01.2027", "time": "09:30", "age": "U11", "league": "Bayernliga", "opponent": "SG EC Peiting II / TSV Schongau 1863 II", "venue": "Peiting", "side": "Auswärts", "km": 89}, {"date": "09.01.2027", "time": "", "age": "U10", "league": "Landesliga", "opponent": "Termin offen", "venue": "Ort offen", "side": "Offen", "km": null}, {"date": "16.01.2027", "time": "10:00", "age": "U11", "league": "Bayernliga", "opponent": "Gunners Zirl", "venue": "Zirl", "side": "Heim", "km": 0}, {"date": "23.01.2027", "time": "09:00", "age": "U11", "league": "Bayernliga", "opponent": "SG EC Peiting II / TSV Schongau 1863 II", "venue": "Schongau", "side": "Auswärts", "km": 93}, {"date": "23.01.2027", "time": "", "age": "U10", "league": "Landesliga", "opponent": "Termin offen", "venue": "Ort offen", "side": "Offen", "km": null}, {"date": "30.01.2027", "time": "11:50", "age": "U11", "league": "Bayernliga", "opponent": "SG Peißenberg Miners II / SC Riessersee II", "venue": "Peißenberg", "side": "Auswärts", "km": 88}, {"date": "31.01.2027", "time": "", "age": "U11", "league": "Landesliga P2", "opponent": "Termin offen", "venue": "Ort offen", "side": "Offen", "km": null}, {"date": "06.02.2027", "time": "", "age": "U10", "league": "Landesliga", "opponent": "Termin offen", "venue": "Ort offen", "side": "Offen", "km": null}, {"date": "07.02.2027", "time": "", "age": "U11", "league": "Landesliga P3", "opponent": "Termin offen", "venue": "Ort offen", "side": "Offen", "km": null}, {"date": "14.02.2027", "time": "", "age": "U11", "league": "Landesliga P3", "opponent": "Termin offen", "venue": "Ort offen", "side": "Offen", "km": null}, {"date": "20.02.2027", "time": "11:10", "age": "U11", "league": "Bayernliga", "opponent": "HC Landsberg Riverkings II", "venue": "Landsberg am Lech", "side": "Auswärts", "km": 121}, {"date": "20.02.2027", "time": "", "age": "U10", "league": "Landesliga", "opponent": "Termin offen", "venue": "Ort offen", "side": "Offen", "km": null}, {"date": "21.02.2027", "time": "", "age": "U11", "league": "Landesliga P3", "opponent": "Termin offen", "venue": "Ort offen", "side": "Offen", "km": null}, {"date": "27.02.2027", "time": "11:10", "age": "U11", "league": "Bayernliga", "opponent": "HC Landsberg Riverkings II", "venue": "Landsberg am Lech", "side": "Auswärts", "km": 121}, {"date": "06.03.2027", "time": "13:05", "age": "U11", "league": "Bayernliga", "opponent": "SG Peißenberg Miners II / SC Riessersee II", "venue": "Riessersee / Garmisch-Partenkirchen", "side": "Auswärts", "km": 42}, {"date": "13.03.2027", "time": "09:30", "age": "U11", "league": "Bayernliga", "opponent": "EV Füssen II", "venue": "Füssen", "side": "Auswärts", "km": 92}];
 const st={age:"ALL",league:"ALL",side:"ALL"};
 function ok(g){return(st.age==="ALL"||g.age===st.age)&&((st.league==="ALL"||(st.league==="Landesliga"?g.league.indexOf("Landesliga")===0:g.league===st.league)))&&(st.side==="ALL"||g.side===st.side)}
 function dateKey(d){
  const m=d.match(/(\d{1,2})\D+(\d{1,2})\D+(\d{4})/); return m?new Date(+m[3],+m[2]-1,+m[1]).getTime():0;
 }
-function teamLogo(g){
- const t=(g.opponent+' '+g.venue).toLowerCase();
+function clubLogo(name){
+ const t=(name||'').toLowerCase();
+ if(t.includes('hci')||t.includes('team rot'))return 'logos/hci_team_rot.png';
  if(t.includes('telfs'))return 'logos/telfs.png';
  if(t.includes('silz'))return 'logos/silz.jpg';
  if(t.includes('ehrwald'))return 'logos/ehrwald.png';
- if(t.includes('imst'))return 'logos/imst.jpg';
+ if(t.includes('imst')||t.includes('scorpions'))return 'logos/imst.jpg';
  if(t.includes('füssen'))return 'logos/fuessen.png';
  if(t.includes('landsberg')||t.includes('riverkings'))return 'logos/riverkings.png';
  if(t.includes('peiting')||t.includes('schongau'))return 'logos/peiting.png';
  if(t.includes('riessersee')||t.includes('peißenberg'))return 'logos/riessersee.png';
- if(t.includes('gunners zirl')||t.includes('zirl'))return 'logos/gunners.png';
+ if(t.includes('gunners')||t.includes('zirl'))return 'logos/gunners.png';
  if(t.includes('götzens'))return 'logos/goetzens.svg';
  if(t.includes('montafon'))return 'logos/montafon.svg';
  return 'logos/gunners.png';
 }
+function teamLogo(g){return clubLogo(g.opponent+' '+g.venue)}
+const u11LLTeams=['Silz Bulls','Gunners Zirl','Telfs Knights','EC Ehrwald','Scorpions Imst'];
+const u10LLTeams={
+ '07.11.2026':['EC Götzens','HCI Team Rot','Gunners Zirl','Telfs Knights'],
+ '28.11.2026':['EC Götzens','HCI Team Rot','Gunners Zirl','Silz Bulls'],
+ '12.12.2026':['Gunners Zirl','Telfs Knights','EC Götzens','Silz Bulls'],
+ '19.12.2026':['Gunners Zirl','Silz Bulls','HCI Team Rot','Telfs Knights']
+};
+function llParticipants(g){
+ if(g.age==='U11' && g.league.indexOf('Landesliga')===0 && g.opponent!=='Termin offen')return u11LLTeams;
+ if(g.age==='U10' && g.league.indexOf('Landesliga')===0)return u10LLTeams[g.date]||null;
+ return null;
+}
+function participantHtml(name){return '<div class="participant"><img src="'+clubLogo(name)+'" alt="'+name+' Logo"><b>'+name+'</b></div>'}
 function render(){
  const r=games.filter(ok).slice().sort((a,b)=>dateKey(a.date)-dateKey(b.date)), box=document.getElementById("games");
  box.innerHTML=r.length?r.map(g=>{
    const km=g.km===null?"—":g.km===0?"Heim":"ca. "+g.km+" km";
    const route=g.venue!=="Ort offen"?'<a class="map" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=Zirl%2C%20Tirol&destination='+encodeURIComponent(g.venue+", Österreich")+'">📍 Route ab Zirl</a>':"";
    const cancelled=g.opponent.includes('22. Int. U10 Kinderturnier');
+   const ll=llParticipants(g);
+   if(ll){
+     const host='<div class="hostlabel">VERANSTALTER</div><div class="hostblock"><img src="'+teamLogo(g)+'" alt="'+g.opponent+' Logo"><b>'+g.opponent+'</b></div>';
+     const participants='<div class="participantsTitle">TEILNEHMENDE MANNSCHAFTEN</div><div class="participants">'+ll.map(participantHtml).join('')+'</div>';
+     return '<article class="game landesturnier">'+host+'<div class="matchinfo"><div class="date"><b>'+g.date+'</b>'+(g.time?'<span>'+g.time+' Uhr</span>':"")+'</div><div class="tags"><span>'+g.age+'</span><span>'+g.league+'</span></div><p>🏒 '+g.venue+'</p><p>🚗 '+km+' <small>Pkw-Richtwert ab Zirl</small></p>'+route+'</div>'+participants+'</article>';
+   }
    const teams='<div class="matchteams"><div class="teamblock"><img src="logos/gunners.png" alt="Gunners Zirl Logo"><b>Gunners Zirl</b></div><span class="vs">vs.</span><div class="teamblock"><img src="'+teamLogo(g)+'" alt="'+g.opponent+' Logo"><b>'+g.opponent+'</b></div></div>';
    return '<article class="game'+(cancelled?' cancelledGame':'')+'">'+teams+'<div class="matchinfo"><div class="date"><b>'+g.date+'</b>'+(g.time?'<span>'+g.time+' Uhr</span>':"")+'</div><div class="tags"><span>'+g.age+'</span><span>'+(g.league||"Termin")+'</span><span>'+g.side+'</span></div><p>🏒 '+g.venue+'</p><p>🚗 '+km+' <small>Pkw-Richtwert ab Zirl</small></p>'+route+'</div></article>';
  }).join(""):'<div class="empty">Keine Termine für diese Filterkombination.</div>';
 }
+
+function updateLeagueButtonsForAge(){
+  const hideU11Only = st.age === "U10";
+  document.querySelectorAll(".u11-only-league").forEach(btn=>{
+    btn.style.display = hideU11Only ? "none" : "";
+  });
+
+  if(hideU11Only && (st.league === "Bayernliga" || st.league === "Phase II")){
+    st.league = "ALL";
+    document.querySelectorAll(".league").forEach(x=>x.classList.remove("active"));
+    const allLeague=document.querySelector('.league[data-v="ALL"]');
+    if(allLeague) allLeague.classList.add("active");
+  }
+}
+
 function bind(c,k){
  document.querySelectorAll("."+c).forEach(b=>b.onclick=()=>{
   document.querySelectorAll("."+c).forEach(x=>x.classList.remove("active"));
-  b.classList.add("active");st[k]=b.dataset.v;render();
+  b.classList.add("active");st[k]=b.dataset.v;if(k==="age")updateLeagueButtonsForAge();render();
  });
 }
-bind("age","age");bind("league","league");bind("side","side");
+bind("age","age");bind("league","league");bind("side","side");updateLeagueButtonsForAge();
 const next=games.filter(g=>g.opponent!=="Termin offen").slice().sort((a,b)=>dateKey(a.date)-dateKey(b.date))[0];
 document.getElementById("next").textContent=next.opponent;
 document.getElementById("meta").textContent=next.date+(next.time?" · "+next.time+" Uhr":"")+" · "+next.age+" · "+next.venue+" · "+next.side;
@@ -141,4 +184,71 @@ btn.classList.add("active");
 document.getElementById(btn.dataset.page).classList.add("activePage");
 window.scrollTo({top:0,behavior:"smooth"});
 }));
-</script></body></html>
+</script>
+<script>
+(function(){
+const BAYERN_TEAMS=[
+ {name:"EV Füssen II", logo:"logos/fuessen.png", url:"https://evfuessen.de/"},
+ {name:"HC Landsberg Riverkings II", logo:"logos/riverkings.png", url:"https://hc-landsberg.de/"},
+ {name:"SG Peißenberg Miners II / SC Riessersee II", logo:"logos/riessersee.png", url:"https://www.scr-eishockey.de/"},
+ {name:"SG EC Peiting II / TSV Schongau 1863 II", logo:"logos/peiting.png", url:"https://www.ec-peiting.de/"},
+ {name:"EC Gunners Zirl", logo:"logos/gunners.png", url:"https://www.ec-zirl.at/"}
+];
+
+function bayernOrganizer(card){
+ const txt=(card.innerText||"").toLowerCase();
+ if(txt.includes("füssen")) return {name:"EV Füssen II",logo:"logos/fuessen.png",url:"https://evfuessen.de/"};
+ if(txt.includes("landsberg")) return {name:"HC Landsberg Riverkings II",logo:"logos/riverkings.png",url:"https://hc-landsberg.de/"};
+ if(txt.includes("peißenberg")||txt.includes("riessersee")) return {name:"SG Peißenberg Miners II / SC Riessersee II",logo:"logos/riessersee.png",url:"https://www.scr-eishockey.de/"};
+ if(txt.includes("peiting")||txt.includes("schongau")) return {name:"SG EC Peiting II / TSV Schongau 1863 II",logo:"logos/peiting.png",url:"https://www.ec-peiting.de/"};
+ if(txt.includes("zirl")) return {name:"EC Gunners Zirl",logo:"logos/gunners.png",url:"https://www.ec-zirl.at/"};
+ return null;
+}
+
+function teamHTML(t){
+ return '<a class="teamEntry" href="'+t.url+'" target="_blank" rel="noopener noreferrer" title="Homepage '+t.name+'">'+
+ '<img src="'+t.logo+'" alt="Logo '+t.name+'"><span>'+t.name+'</span></a>';
+}
+
+function enhanceBayern(){
+ document.querySelectorAll(".game").forEach(card=>{
+   const txt=card.innerText||"";
+   if(!/\bU11\b/.test(txt) || !/Bayernliga/i.test(txt) || card.dataset.bayernEnhanced==="1") return;
+
+   const organizer=bayernOrganizer(card);
+   if(!organizer) return;
+   card.dataset.bayernEnhanced="1";
+
+   // Remove the old VS/logo header only; retain the date/venue/km/route details.
+   const oldHeader=card.querySelector(".teamlogos,.matchup,.versus,.teams");
+   if(oldHeader) oldHeader.remove();
+
+   const content=card.querySelector("div:nth-child(2)") || card;
+   const head=document.createElement("div");
+   head.className="tournamentHeader bayernTournamentHeader";
+   head.innerHTML=
+     '<div class="organizerLabel">VERANSTALTER</div>'+
+     '<a class="organizerClub" href="'+organizer.url+'" target="_blank" rel="noopener noreferrer" title="Homepage '+organizer.name+'">'+
+       '<img src="'+organizer.logo+'" alt="Logo '+organizer.name+'"><strong>'+organizer.name+'</strong>'+
+     '</a>'+
+     '<div class="bayernClass">Bayernliga · Leistungsklasse C · Gruppe 1</div>';
+   content.prepend(head);
+
+   // Existing opponent heading is redundant in tournament mode.
+   const h3=content.querySelector("h3");
+   if(h3) h3.style.display="none";
+
+   // Add all participating teams after the game details.
+   if(!content.querySelector(".bayernParticipants")){
+     const block=document.createElement("div");
+     block.className="bayernParticipants";
+     block.innerHTML='<div class="participantsTitle">TEILNEHMENDE MANNSCHAFTEN</div>'+
+       '<div class="tournamentTeams">'+BAYERN_TEAMS.map(teamHTML).join("")+'</div>';
+     content.appendChild(block);
+   }
+ });
+}
+document.addEventListener("DOMContentLoaded",()=>{setTimeout(enhanceBayern,0);setTimeout(enhanceBayern,150);});
+})();
+</script>
+</body></html>
