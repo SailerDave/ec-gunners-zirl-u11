@@ -350,6 +350,28 @@ details[open] summary{background:#ffd21a;color:#000}
     clear:none!important;
   }
 }
+
+/* V9.3 – Desktop: Hero und Terminliste gemeinsame Hauptspalte */
+@media(min-width:1101px){
+ main.wrap > .hero{
+   margin-left:235px!important;
+   width:calc(100% - 235px)!important;
+   max-width:calc(100% - 235px)!important;
+   box-sizing:border-box!important;
+   margin-bottom:16px!important;
+ }
+ #gamesPage > h2{
+   margin-left:235px!important;
+   margin-top:0!important;
+   margin-bottom:12px!important;
+ }
+ #gamesPage #games{
+   margin-left:235px!important;
+   width:calc(100% - 235px)!important;
+   max-width:calc(100% - 235px)!important;
+   box-sizing:border-box!important;
+ }
+}
 </style></head>
 <body>
 <header><div class="wrap"><div class="head">
@@ -519,6 +541,14 @@ const next=games.find(g=>g.date==="24.10.2026" && g.opponent==="ASKÖ U11 Turnie
 document.getElementById("next").textContent=next.opponent;
 document.getElementById("meta").textContent=next.date+(next.time?" · "+next.time+" Uhr":"")+" · "+next.age+" · "+next.venue+" · "+next.side;
 render();
+ const completedButton=document.getElementById("toggleCompleted");
+ completedButton.addEventListener("click",function(){
+   st.showCompleted=!st.showCompleted;
+   this.textContent=st.showCompleted?"Anzeigen ✓":"Ausblenden";
+   this.setAttribute("aria-pressed",String(st.showCompleted));
+   this.classList.toggle("active",!st.showCompleted);
+   render();
+ });
 
 document.querySelectorAll(".navbtn").forEach(btn=>btn.addEventListener("click",()=>{
 document.querySelectorAll(".navbtn").forEach(x=>x.classList.remove("active"));
