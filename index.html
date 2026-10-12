@@ -492,6 +492,10 @@ function render(){
    const calendar='<button type="button" class="calendarAdd" data-cal-index="'+idx+'" title="Termin in Kalender übernehmen">📅 Kalender</button>';
    const route=g.venue!=="Ort offen"?'<a class="map" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=Zirl%2C%20Tirol&destination='+encodeURIComponent(({"Kuppelarena Telfs":"Kuppelarena Telfs, Telfs, Tirol","Kundl":"Eisarena Kundl, Kundl, Tirol","Zirl":"Eisstadion Zirl, Zirl, Tirol","Aktivpark Montafon / Tschagguns":"Aktivpark Montafon, Tschagguns"}[g.venue]||g.venue+", Österreich"))+'">📍 Google Maps Route</a>':"";
    const cancelled=g.opponent.includes('22. Int. U10 Kinderturnier');
+   if(g.opponent==='ASKÖ U11 Turnier'){
+     const host='<div class="hostlabel">VERANSTALTER</div><div class="hostblock"><img src="logos/gunners.png" alt="EC Gunners Zirl Logo"><b>EC Gunners Zirl</b></div>';
+     return '<article class="game landesturnier">'+host+'<div class="competitionClass">ASKÖ U11 Turnier</div><div class="matchinfo"><div class="date"><b>'+displayDate+'</b><span>09:00 Uhr</span></div><div class="tags"><span>U11</span><span>Turnier</span></div><p>🏒 '+g.venue+'</p>'+route+calendar+'</div></article>';
+   }
    if(g.opponent==='Freundschaftsturnier Kundl'){
      const names=['Wattens','Telfs Knights','EC Kundl Crocodiles','Gunners Zirl'];
      const host='<div class="hostlabel">VERANSTALTER</div><div class="hostblock"><img src="logos/kundl.jpg" alt="EC Kundl Crocodiles Logo"><b>EC Kundl Crocodiles</b></div>';
