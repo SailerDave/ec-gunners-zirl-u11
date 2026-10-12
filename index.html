@@ -11,7 +11,7 @@
 .brand{color:var(--y);font-weight:900;font-size:20px}h1{margin:2px 0;font-size:clamp(22px,5vw,40px)}
 section{margin:22px 0}.hero,.game,.player{background:var(--p);border:1px solid var(--line);border-radius:14px}
 .hero{padding:18px}h2{margin:0 0 10px}.hero h2{color:var(--y)}.op{font-size:clamp(24px,5vw,40px);font-weight:900}
-.hero p{margin:4px 0;color:#ddd}.filters{display:grid;gap:9px;margin-bottom:12px}.fg{display:flex;flex-wrap:wrap;gap:7px;align-items:center}
+.hero p{margin:4px 0;color:#ddd}.hero{text-align:center}.calendarAdd{margin:8px 0 0 9px;padding:7px 11px;font-size:12px}.game.changedGame{border-left:4px solid #ffd21a}.game .statusNote{font-size:12px;color:#ffd21a;font-weight:800}.filters{display:grid;gap:9px;margin-bottom:12px}.fg{display:flex;flex-wrap:wrap;gap:7px;align-items:center}
 .ft{color:#aaa;font-weight:800;min-width:80px}button{background:#1d1d1d;color:#fff;border:1px solid #555;border-radius:99px;padding:8px 12px;font-weight:800;cursor:pointer}
 button.active,button:hover{background:var(--y);color:#000;border-color:var(--y)}.games{display:grid;gap:9px}
 .game{display:block;padding:16px}.matchinfo{text-align:center;max-width:680px;margin:0 auto}.date{color:var(--y);font-size:19px;margin:4px 0 8px}.date span{display:inline-block;color:#ddd;font-size:13px;margin-left:7px}.matchinfo .tags{justify-content:center;margin:0 0 7px}.matchinfo p{margin:4px 0;color:#ddd}.matchinfo .map{margin-top:8px}
@@ -367,7 +367,8 @@ details[open] summary{background:#ffd21a;color:#000}
 <section class="hero"><h2>🏒 Nächstes Spiel / nächster Termin</h2><div id="next" class="op">Wird geladen …</div><p id="meta"></p></section>
 <section id="gamesPage" class="page activePage"><h2>📅 Termine</h2>
 <button id="mobileCompactFilter" type="button" aria-expanded="false">⚙ Filter</button>
-<div class="filters">\n<div class="fg completedFilter"><span class="ft">Abgeschlossene Spiele</span><button id="toggleCompleted" type="button" aria-pressed="true">Anzeigen ✓</button></div>
+<div class="filters">
+<div class="fg completedFilter"><span class="ft">Abgeschlossene Spiele</span><button id="toggleCompleted" type="button" aria-pressed="true">Anzeigen ✓</button></div>
 <div class="fg"><span class="ft">Altersklasse</span><button class="age active" data-v="ALL">Alle</button><button class="age" data-v="U11">U11</button><button class="age" data-v="U10">U10</button></div>
 <div class="fg"><span class="ft">Liga</span><button class="league active" data-v="ALL">Alle</button><button class="league" data-v="Landesliga">Landesliga</button><button class="league u11-only-league" data-v="Bayernliga">Bayernliga</button><button class="league" data-v="Turnier">Turnier</button></div>
 <div class="fg"><span class="ft">Ort</span><button class="side active" data-v="ALL">Alle</button><button class="side" data-v="Heim">Heim</button><button class="side" data-v="Auswärts">Auswärts</button><button class="side" data-v="Offen">Offen</button></div>
@@ -402,11 +403,12 @@ details[open] summary{background:#ffd21a;color:#000}
 <footer>EC Gunners Zirl · Elternportal U10/U11 · Termine bitte mit den offiziellen Vereins-/Ligaangaben abgleichen.</footer>
 </main>
 <script>
-const games=[{"date": "10.10.2026", "time": "", "age": "U11", "league": "Turnier", "opponent": "Freundschaftsturnier Kundl", "venue": "Kundl", "side": "Auswärts", "km": null},{"date": "24.10.2026", "time": "09:00", "age": "U11", "league": "Turnier", "opponent": "ASKÖ U11 Turnier", "venue": "Kuppelarena Telfs", "side": "Auswärts", "km": 17}, {"date": "07.11.2026", "time": "09:00", "age": "U11", "league": "Bayernliga", "opponent": "SG EC Peiting II / TSV Schongau 1863 II", "venue": "Schongau", "side": "Auswärts", "km": 93}, {"date": "07.11.2026", "time": "09:30", "age": "U10", "league": "Landesliga", "opponent": "EC Telfs", "venue": "Kuppelarena Telfs", "side": "Auswärts", "km": 17}, {"date": "21.11.2026", "time": "10:00", "age": "U11", "league": "Bayernliga", "opponent": "Gunners Zirl", "venue": "Zirl", "side": "Heim", "km": 0}, {"date": "22.11.2026", "time": "", "age": "U11", "league": "Landesliga P1", "opponent": "Silz Bulls", "venue": "Silz", "side": "Auswärts", "km": 28}, {"date": "28.11.2026", "time": "", "age": "U10", "league": "Landesliga", "opponent": "EC Götzens", "venue": "Götzens", "side": "Auswärts", "km": 15}, {"date": "29.11.2026", "time": "", "age": "U11", "league": "Landesliga P1", "opponent": "EC Ehrwald", "venue": "Ehrwald", "side": "Auswärts", "km": 64}, {"date": "06.12.2026", "time": "09:00", "age": "U11", "league": "Landesliga P1", "opponent": "Gunners Zirl", "venue": "Zirl", "side": "Heim", "km": 0}, {"date": "09.–11.10.2026", "time": "", "age": "U10", "league": "Turnier", "opponent": "22. Int. U10 Kinderturnier – EHC Montafon", "venue": "Aktivpark Montafon / Tschagguns", "side": "Auswärts", "km": 129}, {"date": "12.12.2026", "time": "17:30", "age": "U10", "league": "Landesliga", "opponent": "Gunners Zirl", "venue": "Zirl", "side": "Heim", "km": 0}, {"date": "13.12.2026", "time": "", "age": "U11", "league": "Landesliga P1", "opponent": "IEC Scorpions Imst", "venue": "Imst", "side": "Auswärts", "km": 47}, {"date": "19.12.2026", "time": "", "age": "U10", "league": "Landesliga", "opponent": "Silz Bulls", "venue": "Silz", "side": "Auswärts", "km": 28}, {"date": "20.12.2026", "time": "11:00", "age": "U11", "league": "Bayernliga", "opponent": "Gunners Zirl", "venue": "Zirl", "side": "Heim", "km": 0}, {"date": "27.12.2026", "time": "", "age": "U11", "league": "Landesliga P2", "opponent": "Termin offen", "venue": "Ort offen", "side": "Offen", "km": null}, {"date": "30.12.2026", "time": "", "age": "U10", "league": "Landesliga", "opponent": "Termin offen", "venue": "Ort offen", "side": "Offen", "km": null}, {"date": "02.01.2027", "time": "13:30", "age": "U11", "league": "Bayernliga", "opponent": "EV Füssen II", "venue": "Füssen", "side": "Auswärts", "km": 92}, {"date": "02.01.2027", "time": "", "age": "U10", "league": "Landesliga", "opponent": "EC Ehrwald", "venue": "Ehrwald", "side": "Auswärts", "km": 64}, {"date": "03.01.2027", "time": "", "age": "U11", "league": "Landesliga P2", "opponent": "Termin offen", "venue": "Ort offen", "side": "Offen", "km": null}, {"date": "06.01.2027", "time": "09:30", "age": "U11", "league": "Bayernliga", "opponent": "SG EC Peiting II / TSV Schongau 1863 II", "venue": "Peiting", "side": "Auswärts", "km": 89}, {"date": "09.01.2027", "time": "", "age": "U10", "league": "Landesliga", "opponent": "Termin offen", "venue": "Ort offen", "side": "Offen", "km": null}, {"date": "16.01.2027", "time": "10:00", "age": "U11", "league": "Bayernliga", "opponent": "Gunners Zirl", "venue": "Zirl", "side": "Heim", "km": 0}, {"date": "23.01.2027", "time": "09:00", "age": "U11", "league": "Bayernliga", "opponent": "SG EC Peiting II / TSV Schongau 1863 II", "venue": "Schongau", "side": "Auswärts", "km": 93}, {"date": "23.01.2027", "time": "", "age": "U10", "league": "Landesliga", "opponent": "Termin offen", "venue": "Ort offen", "side": "Offen", "km": null}, {"date": "30.01.2027", "time": "11:50", "age": "U11", "league": "Bayernliga", "opponent": "SG Peißenberg Miners II / SC Riessersee II", "venue": "Peißenberg", "side": "Auswärts", "km": 88}, {"date": "31.01.2027", "time": "", "age": "U11", "league": "Landesliga P2", "opponent": "Termin offen", "venue": "Ort offen", "side": "Offen", "km": null}, {"date": "06.02.2027", "time": "", "age": "U10", "league": "Landesliga", "opponent": "Termin offen", "venue": "Ort offen", "side": "Offen", "km": null}, {"date": "07.02.2027", "time": "", "age": "U11", "league": "Landesliga P3", "opponent": "Termin offen", "venue": "Ort offen", "side": "Offen", "km": null}, {"date": "14.02.2027", "time": "", "age": "U11", "league": "Landesliga P3", "opponent": "Termin offen", "venue": "Ort offen", "side": "Offen", "km": null}, {"date": "20.02.2027", "time": "11:10", "age": "U11", "league": "Bayernliga", "opponent": "HC Landsberg Riverkings II", "venue": "Landsberg am Lech", "side": "Auswärts", "km": 121}, {"date": "20.02.2027", "time": "", "age": "U10", "league": "Landesliga", "opponent": "Termin offen", "venue": "Ort offen", "side": "Offen", "km": null}, {"date": "21.02.2027", "time": "", "age": "U11", "league": "Landesliga P3", "opponent": "Termin offen", "venue": "Ort offen", "side": "Offen", "km": null}, {"date": "27.02.2027", "time": "11:10", "age": "U11", "league": "Bayernliga", "opponent": "HC Landsberg Riverkings II", "venue": "Landsberg am Lech", "side": "Auswärts", "km": 121}, {"date": "06.03.2027", "time": "13:05", "age": "U11", "league": "Bayernliga", "opponent": "SG Peißenberg Miners II / SC Riessersee II", "venue": "Riessersee / Garmisch-Partenkirchen", "side": "Auswärts", "km": 42}, {"date": "13.03.2027", "time": "09:30", "age": "U11", "league": "Bayernliga", "opponent": "EV Füssen II", "venue": "Füssen", "side": "Auswärts", "km": 92}];
+const games=[{"date": "10.10.2026", "time": "", "age": "U11", "league": "Turnier", "opponent": "Freundschaftsturnier Kundl", "venue": "Kundl", "side": "Auswärts", "km": null},{"date": "24.10.2026", "time": "09:00", "age": "U11", "league": "Turnier", "opponent": "ASKÖ U11 Turnier", "venue": "Kuppelarena Telfs", "side": "Auswärts", "km": 17}, {"date": "07.11.2026", "time": "09:00", "age": "U11", "league": "Bayernliga", "opponent": "SG EC Peiting II / TSV Schongau 1863 II", "venue": "Schongau", "side": "Auswärts", "km": 93}, {"date": "07.11.2026", "time": "09:30", "age": "U10", "league": "Landesliga", "opponent": "EC Telfs", "venue": "Kuppelarena Telfs", "side": "Auswärts", "km": 17}, {"date": "21.11.2026", "time": "10:00", "age": "U11", "league": "Bayernliga", "opponent": "Gunners Zirl", "venue": "Zirl", "side": "Heim", "km": 0}, {"date": "22.11.2026", "time": "", "age": "U11", "league": "Landesliga P1", "opponent": "Silz Bulls", "venue": "Silz", "side": "Auswärts", "km": 28}, {"date": "28.11.2026", "time": "", "age": "U10", "league": "Landesliga", "opponent": "EC Götzens", "venue": "Götzens", "side": "Auswärts", "km": 15}, {"date": "29.11.2026", "time": "", "age": "U11", "league": "Landesliga P1", "opponent": "EC Ehrwald", "venue": "Ehrwald", "side": "Auswärts", "km": 64}, {"date": "06.12.2026", "time": "09:00", "age": "U11", "league": "Landesliga P1", "opponent": "Gunners Zirl", "venue": "Zirl", "side": "Heim", "km": 0}, {"date": "09.10.–11.10.2026", "time": "", "age": "U10", "league": "Turnier", "opponent": "22. Int. U10 Kinderturnier – EHC Montafon", "venue": "Aktivpark Montafon / Tschagguns", "side": "Auswärts", "km": 129}, {"date": "12.12.2026", "time": "17:30", "age": "U10", "league": "Landesliga", "opponent": "Gunners Zirl", "venue": "Zirl", "side": "Heim", "km": 0}, {"date": "13.12.2026", "time": "", "age": "U11", "league": "Landesliga P1", "opponent": "IEC Scorpions Imst", "venue": "Imst", "side": "Auswärts", "km": 47}, {"date": "19.12.2026", "time": "", "age": "U10", "league": "Landesliga", "opponent": "Silz Bulls", "venue": "Silz", "side": "Auswärts", "km": 28}, {"date": "20.12.2026", "time": "11:00", "age": "U11", "league": "Bayernliga", "opponent": "Gunners Zirl", "venue": "Zirl", "side": "Heim", "km": 0}, {"date": "27.12.2026", "time": "", "age": "U11", "league": "Landesliga P2", "opponent": "Termin offen", "venue": "Ort offen", "side": "Offen", "km": null}, {"date": "30.12.2026", "time": "", "age": "U10", "league": "Landesliga", "opponent": "Termin offen", "venue": "Ort offen", "side": "Offen", "km": null}, {"date": "02.01.2027", "time": "13:30", "age": "U11", "league": "Bayernliga", "opponent": "EV Füssen II", "venue": "Füssen", "side": "Auswärts", "km": 92}, {"date": "02.01.2027", "time": "", "age": "U10", "league": "Landesliga", "opponent": "EC Ehrwald", "venue": "Ehrwald", "side": "Auswärts", "km": 64}, {"date": "03.01.2027", "time": "", "age": "U11", "league": "Landesliga P2", "opponent": "Termin offen", "venue": "Ort offen", "side": "Offen", "km": null}, {"date": "06.01.2027", "time": "09:30", "age": "U11", "league": "Bayernliga", "opponent": "SG EC Peiting II / TSV Schongau 1863 II", "venue": "Peiting", "side": "Auswärts", "km": 89}, {"date": "09.01.2027", "time": "", "age": "U10", "league": "Landesliga", "opponent": "Termin offen", "venue": "Ort offen", "side": "Offen", "km": null}, {"date": "16.01.2027", "time": "10:00", "age": "U11", "league": "Bayernliga", "opponent": "Gunners Zirl", "venue": "Zirl", "side": "Heim", "km": 0}, {"date": "23.01.2027", "time": "09:00", "age": "U11", "league": "Bayernliga", "opponent": "SG EC Peiting II / TSV Schongau 1863 II", "venue": "Schongau", "side": "Auswärts", "km": 93}, {"date": "23.01.2027", "time": "", "age": "U10", "league": "Landesliga", "opponent": "Termin offen", "venue": "Ort offen", "side": "Offen", "km": null}, {"date": "30.01.2027", "time": "11:50", "age": "U11", "league": "Bayernliga", "opponent": "SG Peißenberg Miners II / SC Riessersee II", "venue": "Peißenberg", "side": "Auswärts", "km": 88}, {"date": "31.01.2027", "time": "", "age": "U11", "league": "Landesliga P2", "opponent": "Termin offen", "venue": "Ort offen", "side": "Offen", "km": null}, {"date": "06.02.2027", "time": "", "age": "U10", "league": "Landesliga", "opponent": "Termin offen", "venue": "Ort offen", "side": "Offen", "km": null}, {"date": "07.02.2027", "time": "", "age": "U11", "league": "Landesliga P3", "opponent": "Termin offen", "venue": "Ort offen", "side": "Offen", "km": null}, {"date": "14.02.2027", "time": "", "age": "U11", "league": "Landesliga P3", "opponent": "Termin offen", "venue": "Ort offen", "side": "Offen", "km": null}, {"date": "20.02.2027", "time": "11:10", "age": "U11", "league": "Bayernliga", "opponent": "HC Landsberg Riverkings II", "venue": "Landsberg am Lech", "side": "Auswärts", "km": 121}, {"date": "20.02.2027", "time": "", "age": "U10", "league": "Landesliga", "opponent": "Termin offen", "venue": "Ort offen", "side": "Offen", "km": null}, {"date": "21.02.2027", "time": "", "age": "U11", "league": "Landesliga P3", "opponent": "Termin offen", "venue": "Ort offen", "side": "Offen", "km": null}, {"date": "27.02.2027", "time": "11:10", "age": "U11", "league": "Bayernliga", "opponent": "HC Landsberg Riverkings II", "venue": "Landsberg am Lech", "side": "Auswärts", "km": 121}, {"date": "06.03.2027", "time": "13:05", "age": "U11", "league": "Bayernliga", "opponent": "SG Peißenberg Miners II / SC Riessersee II", "venue": "Riessersee / Garmisch-Partenkirchen", "side": "Auswärts", "km": 42}, {"date": "13.03.2027", "time": "09:30", "age": "U11", "league": "Bayernliga", "opponent": "EV Füssen II", "venue": "Füssen", "side": "Auswärts", "km": 92}];
 const st={age:"ALL",league:"ALL",side:"ALL",showCompleted:true};
 function ok(g){return(st.showCompleted||dateKey(g.date)>=new Date().setHours(0,0,0,0))&&(st.age==="ALL"||g.age===st.age)&&((st.league==="ALL"||(st.league==="Landesliga"?g.league.indexOf("Landesliga")===0:g.league===st.league)))&&(st.side==="ALL"||g.side===st.side)}
 function dateKey(d){
- const m=d.match(/(\d{1,2})\D+(\d{1,2})\D+(\d{4})/); return m?new Date(+m[3],+m[2]-1,+m[1]).getTime():0;
+ const m=d.match(/^(\d{1,2})\.(\d{1,2})\.(\d{4})/);
+ return m?new Date(+m[3],+m[2]-1,+m[1]).getTime():0;
 }
 function clubLogo(name){
  const t=(name||'').toLowerCase();
@@ -462,31 +464,33 @@ function bayernHostHtml(g){
 }
 function render(){
  const r=games.filter(ok).slice().sort((a,b)=>dateKey(a.date)-dateKey(b.date)), box=document.getElementById("games");
- box.innerHTML=r.length?r.map(g=>{
+ box.innerHTML=r.length?r.map((g,idx)=>{
+   const displayDate=g.date==='09.10.–11.10.2026'?'09.–11.10.2026':g.date;
    const km=g.km===null?"—":g.km===0?"Heim":"ca. "+g.km+" km";
-   const route=g.venue!=="Ort offen"?'<a class="map" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=Zirl%2C%20Tirol&destination='+encodeURIComponent(g.venue+", Österreich")+'">📍 Route ab Zirl</a>':"";
+   const calendar='<button type="button" class="calendarAdd" data-cal-index="'+idx+'" title="Termin in Kalender übernehmen">📅 Kalender</button>';
+   const route=g.venue!=="Ort offen"?'<a class="map" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=Zirl%2C%20Tirol&destination='+encodeURIComponent(({"Kuppelarena Telfs":"Kuppelarena Telfs, Telfs, Tirol","Kundl":"Eisarena Kundl, Kundl, Tirol","Zirl":"Eisstadion Zirl, Zirl, Tirol","Aktivpark Montafon / Tschagguns":"Aktivpark Montafon, Tschagguns"}[g.venue]||g.venue+", Österreich"))+'">📍 Google Maps Route</a>':"";
    const cancelled=g.opponent.includes('22. Int. U10 Kinderturnier');
    if(g.opponent==='Freundschaftsturnier Kundl'){
      const names=['Wattens','Telfs Knights','EC Kundl Crocodiles','Gunners Zirl'];
      const host='<div class="hostlabel">VERANSTALTER</div><div class="hostblock"><img src="logos/kundl.jpg" alt="EC Kundl Crocodiles Logo"><b>EC Kundl Crocodiles</b></div>';
      const participants='<div class="participantsTitle">TEILNEHMENDE MANNSCHAFTEN</div><div class="participants">'+names.map(n=>participantHtml(n,false)).join('')+'</div>';
-     return '<article class="game landesturnier">'+host+'<div class="competitionClass">Freundschaftsturnier Kundl</div><div class="matchinfo"><div class="date"><b>'+g.date+'</b></div><div class="tags"><span>U11</span><span>Turnier</span></div><p>🏒 Kundl</p>'+route+'</div>'+participants+'</article>';
+     return '<article class="game landesturnier">'+host+'<div class="competitionClass">Freundschaftsturnier Kundl</div><div class="matchinfo"><div class="date"><b>'+displayDate+'</b></div><div class="tags"><span>U11</span><span>Turnier</span></div><p>🏒 Kundl</p>'+route+calendar+'</div>'+participants+'</article>';
    }
    const ll=llParticipants(g);
    if(ll){
      const host='<div class="hostlabel">VERANSTALTER</div><div class="hostblock"><img src="'+teamLogo(g)+'" alt="'+g.opponent+' Logo"><b>'+g.opponent+'</b></div>';
      const group=g.age==='U11'&&g.league==='Landesliga P1'?'<div class="competitionClass">Landesliga · Phase 1 · Gruppe Arlberg</div>':'';
      const participants='<div class="participantsTitle">TEILNEHMENDE MANNSCHAFTEN</div><div class="participants">'+ll.map(n=>participantHtml(n,false)).join('')+'</div>';
-     return '<article class="game landesturnier">'+host+group+'<div class="matchinfo"><div class="date"><b>'+g.date+'</b>'+(g.time?'<span>'+g.time+' Uhr</span>':"")+'</div><div class="tags"><span>'+g.age+'</span><span>'+g.league+'</span></div><p>🏒 '+g.venue+'</p><p>🚗 '+km+' <small>Pkw-Richtwert ab Zirl</small></p>'+route+'</div>'+participants+'</article>';
+     return '<article class="game landesturnier">'+host+group+'<div class="matchinfo"><div class="date"><b>'+displayDate+'</b>'+(g.time?'<span>'+g.time+' Uhr</span>':"")+'</div><div class="tags"><span>'+g.age+'</span><span>'+g.league+'</span></div><p>🏒 '+g.venue+'</p><p>🚗 '+km+' <small>Pkw-Richtwert ab Zirl</small></p>'+route+calendar+'</div>'+participants+'</article>';
    }
    if(g.age==='U11' && g.league==='Bayernliga'){
      const host=bayernHostHtml(g);
      const group='<div class="competitionClass">Bayernliga · Leistungsklasse C · Gruppe 1</div>';
      const participants='<div class="participantsTitle">TEILNEHMENDE MANNSCHAFTEN</div><div class="participants bayernParticipants">'+bayernTeams.map(n=>participantHtml(n,true)).join('')+'</div>';
-     return '<article class="game landesturnier bayernturnier">'+host+group+'<div class="matchinfo"><div class="date"><b>'+g.date+'</b>'+(g.time?'<span>'+g.time+' Uhr</span>':"")+'</div><div class="tags"><span>'+g.age+'</span><span>Bayernliga</span></div><p>🏒 '+g.venue+'</p><p>🚗 '+km+' <small>Pkw-Richtwert ab Zirl</small></p>'+route+'</div>'+participants+'</article>';
+     return '<article class="game landesturnier bayernturnier">'+host+group+'<div class="matchinfo"><div class="date"><b>'+displayDate+'</b>'+(g.time?'<span>'+g.time+' Uhr</span>':"")+'</div><div class="tags"><span>'+g.age+'</span><span>Bayernliga</span></div><p>🏒 '+g.venue+'</p><p>🚗 '+km+' <small>Pkw-Richtwert ab Zirl</small></p>'+route+calendar+'</div>'+participants+'</article>';
    }
    const teams='<div class="matchteams"><div class="teamblock"><img src="logos/gunners.png" alt="Gunners Zirl Logo"><b>Gunners Zirl</b></div><span class="vs">vs.</span><div class="teamblock"><img src="'+teamLogo(g)+'" alt="'+g.opponent+' Logo"><b>'+g.opponent+'</b></div></div>';
-   return '<article class="game'+(cancelled?' cancelledGame':'')+'">'+teams+'<div class="matchinfo"><div class="date"><b>'+g.date+'</b>'+(g.time?'<span>'+g.time+' Uhr</span>':"")+'</div><div class="tags"><span>'+g.age+'</span><span>'+(g.league||"Termin")+'</span><span>'+g.side+'</span></div><p>🏒 '+g.venue+'</p><p>🚗 '+km+' <small>Pkw-Richtwert ab Zirl</small></p>'+route+'</div></article>';
+   return '<article class="game'+(cancelled?' cancelledGame':'')+'">'+teams+'<div class="matchinfo"><div class="date"><b>'+displayDate+'</b>'+(g.time?'<span>'+g.time+' Uhr</span>':"")+'</div><div class="tags"><span>'+g.age+'</span><span>'+(g.league||"Termin")+'</span><span>'+g.side+'</span></div><p>🏒 '+g.venue+'</p><p>🚗 '+km+' <small>Pkw-Richtwert ab Zirl</small></p>'+route+calendar+'</div></article>';
  }).join(""):'<div class="empty">Keine Termine für diese Filterkombination.</div>';
 }
 
@@ -612,6 +616,47 @@ document.addEventListener("click",e=>{if(e.target.closest(".age,.league,.side,.n
       }
     });
   });
+})();
+</script>
+
+<script>
+(function(){
+ function pad(n){return String(n).padStart(2,'0')}
+ function esc(t){return String(t||'').replace(/\\/g,'\\\\').replace(/\n/g,'\\n').replace(/,/g,'\\,').replace(/;/g,'\\;')}
+ function icsDate(d,time){
+   const m=d.match(/^(\d{1,2})\.(\d{1,2})\.(\d{4})/);
+   if(!m)return null;
+   const day=m[3]+pad(m[2])+pad(m[1]);
+   return time?day+'T'+time.replace(':','').slice(0,4)+'00':day;
+ }
+ document.getElementById('games').addEventListener('click',function(e){
+   const btn=e.target.closest('.calendarAdd');
+   if(!btn)return;
+   const visible=games.filter(ok).slice().sort((a,b)=>dateKey(a.date)-dateKey(b.date));
+   const g=visible[Number(btn.dataset.calIndex)];
+   if(!g)return;
+   const start=icsDate(g.date,g.time);
+   if(!start)return;
+   const allDay=!g.time;
+   let end;
+   if(allDay){
+     const m=g.date.match(/^(\d{1,2})\.(\d{1,2})\.(\d{4})/);
+     let dt=new Date(+m[3],+m[2]-1,+m[1]+1);
+     if(g.date.includes('11.10.2026'))dt=new Date(2026,9,12);
+     end=dt.getFullYear()+pad(dt.getMonth()+1)+pad(dt.getDate());
+   }else{
+     const m=g.date.match(/^(\d{1,2})\.(\d{1,2})\.(\d{4})/);
+     const [h,min]=g.time.split(':').map(Number);
+     const dt=new Date(+m[3],+m[2]-1,+m[1],h,min+90);
+     end=dt.getFullYear()+pad(dt.getMonth()+1)+pad(dt.getDate())+'T'+pad(dt.getHours())+pad(dt.getMinutes())+'00';
+   }
+   const desc='EC Gunners Zirl '+g.age+' – '+g.league+'; Details und eventuelle Änderungen auf der Parents-Page prüfen. Kalenderzeit'+(allDay?' noch offen.':' (90 Minuten als Platzhalter).');
+   const lines=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Gunners Zirl//Parents Page//DE','BEGIN:VEVENT','UID:gunners-'+encodeURIComponent(g.date+g.age+g.opponent)+'@parentspage','DTSTAMP:20261012T080000Z','DTSTART'+(allDay?';VALUE=DATE':'')+':'+start,'DTEND'+(allDay?';VALUE=DATE':'')+':'+end,'SUMMARY:'+esc(g.opponent+' – '+g.age),'LOCATION:'+esc(g.venue),'DESCRIPTION:'+esc(desc),'END:VEVENT','END:VCALENDAR'];
+   const blob=new Blob([lines.join('\r\n')+'\r\n'],{type:'text/calendar;charset=utf-8'});
+   const url=URL.createObjectURL(blob),a=document.createElement('a');
+   a.href=url;a.download='Gunners_'+g.age+'_'+g.date.replace(/[^0-9]/g,'_')+'.ics';
+   document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1500);
+ });
 })();
 </script>
 </body></html>
