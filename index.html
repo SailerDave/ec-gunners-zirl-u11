@@ -404,6 +404,16 @@ details[open] summary{background:#ffd21a;color:#000}
 .calitem.pastEvent:not(.cancelledEvent){background:#303030;color:#a5a5a5}
 .calitem.cancelledEvent{background:#303030;color:#a5a5a5;text-decoration:line-through}
 .caldetails .pastEventDetail{color:#aaa}
+
+/* V9.8 – Hero auf Kader/Kalender zentriert; Spiele-Ausrichtung bleibt erhalten */
+@media (min-width:1101px){
+  main.wrap:has(.page.activePage:not(#gamesPage)) > .hero{
+    margin-left:0!important;
+    margin-right:0!important;
+    width:100%!important;
+    max-width:100%!important;
+  }
+}
 </style></head>
 <body>
 <header><div class="wrap"><div class="head">
