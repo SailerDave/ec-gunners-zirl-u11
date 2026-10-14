@@ -393,16 +393,16 @@ details[open] summary{background:#ffd21a;color:#000}
 .caldetails a{color:var(--y)}.calhint{font-size:13px;color:#aaa;line-height:1.6;margin-top:18px}
 @media(max-width:650px){.mainnav .navinner{gap:5px;padding:7px 8px}.mainnav .navbtn{font-size:11px;padding:8px 10px}.calgrid{gap:2px}.calday{min-height:73px;padding:3px;border-radius:5px}.calweekday{font-size:11px}.calnumber{font-size:12px}.calitem{font-size:9px;padding:2px}.caltoolbar h3{font-size:17px;min-width:155px}}
 
-/* V9.6: vergangene Termine nur optisch kennzeichnen; abgesagte bleiben rot */
-.game.pastGame:not(.cancelledGame){background:#171717;border-color:#3a3a3a;color:#bbb}
-.game.pastGame:not(.cancelledGame) .hostblock img,
-.game.pastGame:not(.cancelledGame) .teamblock img,
-.game.pastGame:not(.cancelledGame) .participants img{filter:grayscale(.85);opacity:.67}
-.game.pastGame:not(.cancelledGame) .competitionClass,
-.game.pastGame:not(.cancelledGame) .date b{color:#bcbcbc}
+/* V9.7: auch abgesagte vergangene Turniere ausgrauen; rotes ABGESAGT-Band bleibt */
+.game.pastGame{background:#171717;border-color:#3a3a3a;color:#bbb}
+.game.pastGame .hostblock img,
+.game.pastGame .teamblock img,
+.game.pastGame .participants img{filter:grayscale(.85);opacity:.67}
+.game.pastGame .competitionClass,
+.game.pastGame .date b{color:#bcbcbc}
 .pastStatus{display:inline-flex;align-items:center;gap:4px;background:#454545;color:#dedede;border:1px solid #666;border-radius:999px;padding:4px 9px;font-size:11px;font-weight:800;margin:0 0 9px}
 .calitem.pastEvent:not(.cancelledEvent){background:#303030;color:#a5a5a5}
-.calitem.cancelledEvent{background:#542222;color:#ffcccc;text-decoration:line-through}
+.calitem.cancelledEvent{background:#303030;color:#a5a5a5;text-decoration:line-through}
 .caldetails .pastEventDetail{color:#aaa}
 </style></head>
 <body>
@@ -534,7 +534,7 @@ function render(){
    const route=g.venue!=="Ort offen"?'<a class="map" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=Zirl%2C%20Tirol&destination='+encodeURIComponent(({"Kuppelarena Telfs":"Kuppelarena Telfs, Telfs, Tirol","Kundl":"Eisarena Kundl, Kundl, Tirol","Zirl":"Eisstadion Zirl, Zirl, Tirol","Aktivpark Montafon / Tschagguns":"Aktivpark Montafon, Tschagguns"}[g.venue]||g.venue+", Österreich"))+'">📍 Google Maps Route</a>':"";
    const cancelled=g.opponent.includes('22. Int. U10 Kinderturnier');
    const past=dateKey(g.date)<new Date().setHours(0,0,0,0);
-   const pastClass=past&&!cancelled?' pastGame':'';
+   const pastClass=past?' pastGame':'';
    const pastBadge=past&&!cancelled?'<div class="pastStatus">✓ Vergangen</div>':'';
    if(g.opponent==='ASKÖ U11 Turnier'){
      const host='<div class="hostlabel">VERANSTALTER</div><div class="hostblock"><img src="logos/gunners.png" alt="EC Gunners Zirl Logo"><b>EC Gunners Zirl</b></div>';
