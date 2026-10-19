@@ -414,6 +414,31 @@ details[open] summary{background:#ffd21a;color:#000}
     max-width:100%!important;
   }
 }
+
+/* V9.9 – ASKÖ Turnier: Mannschaften, Tournify und ausklappbarer Spielplan */
+.askoParticipants{max-width:920px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.askoParticipants .participant{width:auto;min-width:0}
+.tournifyLink{text-align:center;margin:15px 0!important}
+.tournifyLink a,.askoMatchesBody a{color:#ffd21a;font-weight:900;text-decoration:underline;text-underline-offset:3px}
+.askoMatches{max-width:780px;margin:16px auto 0;border:1px solid #666;background:#191919}
+.askoMatches summary{font-size:15px;background:#242424;color:#ffd21a;padding:13px 16px}
+.askoMatches[open] summary{background:#ffd21a;color:#000}
+.askoMatchesBody{padding:12px 16px;text-align:left;line-height:1.55}
+.askoMatchesBody p{margin:8px 0}
+@media(max-width:600px){.askoParticipants{grid-template-columns:repeat(2,minmax(0,1fr))}.askoMatches summary{font-size:13px}}
+
+/* V10.0 – ASKÖ-Zirl-Spielplan: mittig ausgerichteter Aufklappbutton und Spielzeilen */
+.askoMatches{margin-left:auto!important;margin-right:auto!important;text-align:center!important}
+.askoMatches > summary{display:block;text-align:center!important;cursor:pointer;list-style:none}
+.askoMatches > summary::-webkit-details-marker{display:none}
+.askoFixtures{display:grid;gap:8px}
+.askoFixture{display:grid;grid-template-columns:90px minmax(0,1fr) 80px;align-items:center;gap:10px;padding:11px 13px;background:#282828;border:1px solid #444;border-radius:8px}
+.askoFixtureTime{font-weight:900;color:#ffd21a;text-align:left}
+.askoFixtureTeams{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;text-align:center}
+.askoFixtureVs{color:#aaa;font-size:12px}
+.askoFixtureField{text-align:right;color:#bbb;font-size:12px}
+.askoFixtureNote{text-align:center!important;color:#bbb;font-size:12px}
+@media(max-width:600px){.askoFixture{grid-template-columns:65px minmax(0,1fr);gap:6px;padding:10px 8px}.askoFixtureTeams{gap:5px;font-size:12px}.askoFixtureField{grid-column:2;text-align:center}.askoFixtureTime{font-size:13px}}
 </style></head>
 <body>
 <header><div class="wrap"><div class="head">
@@ -485,6 +510,8 @@ function dateKey(d){
 }
 function clubLogo(name){
  const t=(name||'').toLowerCase();
+ if(t.includes('feldkirch')||t.includes('veu'))return 'logos/veu_feldkirch.png';
+ if(t.includes('red bull')||t.includes('salzburg'))return 'logos/red_bull_salzburg.webp';
  if(t.includes('wattens'))return 'logos/wattens.png';
  if(t.includes('kundl'))return 'logos/kundl.jpg';
  if(t.includes('hci')||t.includes('team rot'))return 'logos/hci_team_rot.png';
@@ -548,7 +575,20 @@ function render(){
    const pastBadge=past&&!cancelled?'<div class="pastStatus">✓ Vergangen</div>':'';
    if(g.opponent==='ASKÖ U11 Turnier'){
      const host='<div class="hostlabel">VERANSTALTER</div><div class="hostblock"><img src="logos/gunners.png" alt="EC Gunners Zirl Logo"><b>EC Gunners Zirl</b></div>';
-     return '<article class="game landesturnier'+pastClass+'">'+pastBadge+host+'<div class="competitionClass">ASKÖ U11 Turnier</div><div class="matchinfo"><div class="date"><b>'+displayDate+'</b><span>09:00 Uhr</span></div><div class="tags"><span>U11</span><span>Turnier</span></div><p>🏒 '+g.venue+'</p>'+route+calendar+'</div></article>';
+     const askTeams=['EC Ehrwald','EC Gunners Zirl','EHC Crocodiles Kundl','HC Innsbruck','Red Bull Salzburg','SV Silz','Telfs Knights','VEU Feldkirch'];
+     const participants='<div class="participantsTitle">TEILNEHMENDE MANNSCHAFTEN</div><div class="participants askoParticipants">'+askTeams.map(n=>participantHtml(n,false)).join('')+'</div>';
+     const tournify='<p class="tournifyLink"><a href="https://tournifyapp.com/live/u11-tournament-2026" target="_blank" rel="noopener noreferrer">🏒 Live-Spielplan und Ergebnisse auf Tournify ↗</a></p>';
+     const askoFixtures=[
+        {time:'09:00',opponent:'EC Ehrwald',field:'Feld 1'},
+        {time:'09:50',opponent:'SV Silz',field:'Feld 1'},
+        {time:'10:55',opponent:'HC Innsbruck',field:'Feld 1'},
+        {time:'11:45',opponent:'EHC Crocodiles Kundl',field:'Feld 1'},
+        {time:'13:15',opponent:'VEU Feldkirch',field:'Feld 1'},
+        {time:'14:05',opponent:'Red Bull Salzburg',field:'Feld 1'},
+        {time:'15:10',opponent:'Telfs Knights',field:'Feld 1'}
+      ];
+      const gamesDropdown='<details class="askoMatches"><summary>🏒 Alle Spiele des EC Gunners Zirl – Zeiten & Gegner anzeigen</summary><div class="askoMatchesBody"><div class="askoFixtures">'+askoFixtures.map(f=>'<div class="askoFixture"><span class="askoFixtureTime">'+f.time+' Uhr</span><span class="askoFixtureTeams"><b>EC Gunners Zirl</b><span class="askoFixtureVs">vs.</span><b>'+f.opponent+'</b></span><span class="askoFixtureField">'+f.field+'</span></div>').join('')+'</div><p class="askoFixtureNote">Qualifikationsrunde · 24.10.2026 · Kuppelarena Telfs</p><p class="askoFixtureNote">Ab 16:00 Uhr: Top-4-Playoffs (Teilnahme und Gegner abhängig von der Platzierung).</p></div></details>'
+     return '<article class="game landesturnier'+pastClass+'">'+pastBadge+host+'<div class="competitionClass">ASKÖ U11 Turnier</div><div class="matchinfo"><div class="date"><b>'+displayDate+'</b><span>09:00 Uhr</span></div><div class="tags"><span>U11</span><span>Turnier</span></div><p>🏒 '+g.venue+'</p>'+route+calendar+'</div>'+participants+tournify+gamesDropdown+'</article>';
    }
    if(g.opponent==='Freundschaftsturnier Kundl'){
      const names=['Wattens','Telfs Knights','EC Kundl Crocodiles','Gunners Zirl'];
